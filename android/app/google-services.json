@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "804568376356",
+    "project_id": "socialized-app",
+    "storage_bucket": "socialized-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804568376356:android:b05770556e1ae73e7ba4b1",
+        "android_client_info": {
+          "package_name": "com.example.social_app2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804568376356-co521dkhoa80cnjgg1oq1m3ut67uid08.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgeQ5mBpUqWBiXI3IkIXCDEIALgTvD3Qs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804568376356-co521dkhoa80cnjgg1oq1m3ut67uid08.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "804568376356-8tonori0p87qse5rdg7ftb9kg85n4fn2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.socialApp2"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

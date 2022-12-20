@@ -1,20 +1,19 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../models/product.dart';
 
 class ProductWidget extends StatelessWidget {
   Product product;
+
   ProductWidget(this.product);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
       onTap: () {},
       child: Container(
-        margin: EdgeInsets.all(5),
+        margin: const EdgeInsets.all(5),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15),
@@ -24,7 +23,8 @@ class ProductWidget extends StatelessWidget {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(13)),
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(13)),
                   child: SizedBox(
                       width: double.infinity,
                       height: 170,
@@ -42,16 +42,16 @@ class ProductWidget extends StatelessWidget {
                           radius: 20,
                           backgroundColor: Colors.white,
                           child: IconButton(
-                              onPressed: () {}, icon: Icon(Icons.delete)),
+                              onPressed: () {}, icon: const Icon(Icons.delete)),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         CircleAvatar(
                           radius: 20,
                           backgroundColor: Colors.white,
                           child: IconButton(
-                              onPressed: () {}, icon: Icon(Icons.edit)),
+                              onPressed: () {}, icon: const Icon(Icons.edit)),
                         ),
                       ],
                     ))

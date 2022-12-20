@@ -196,19 +196,7 @@ class SignInScreen extends StatelessWidget {
                       ]),
                 ));
           }))),
-      // ElevatedButton(
-      //     style: ElevatedButton.styleFrom(
-      //       padding: const EdgeInsets.symmetric(
-      //           horizontal: 20.0, vertical: 15.0),
-      //       backgroundColor: const Color(0xffffcc33),
-      //       shape: RoundedRectangleBorder(
-      //         borderRadius: BorderRadius.circular(30),
-      //       ),
-      //     ),
-      //  ;
-      //     },
-      //     child: const Text('Go to Sign Up Screen',
-      //         style: TextStyle(color: Colors.black))),
+
     );
   }
 }

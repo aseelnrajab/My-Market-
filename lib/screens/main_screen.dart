@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:social_app2/Routers/app_router.dart';
 
 import 'package:social_app2/screens/Home.dart';
-import 'package:social_app2/screens/categories.dart';
 import 'package:social_app2/screens/profile.dart';
 
-import '../providers/auth_provider.dart';
 import '../providers/bottom_navigation_bar_provider.dart';
+import 'categories.dart';
 
 class MainScreen extends StatelessWidget {
-  // const MainScreen({Key? key}) : super(key: key);
-  var currentTab = [
-    HomeScreen(), AllCategoriesScreen(),
-    // Cart(),
-    Profile()
-  ];
+  var currentTab = [HomeScreen(), AllCategories(), Profile()];
   List HIcon = [Icons.home, Icons.category, Icons.shopping_cart, Icons.person];
   List NIcon = ['Home', 'Category', 'Cart', 'Profile'];
 
@@ -116,24 +109,6 @@ class MainScreen extends StatelessWidget {
             ),
           ]),
         ),
-        appBar: AppBar(
-            title: Text(provider.appBarTitle[provider.currentIndex]),
-            leading: InkWell(
-                onTap: () {
-                  AppRouter.appRouter
-                      .goToWidget(Provider.of<AuthProvider>(context, listen: false).signOut());
-                },
-                child: const Icon(Icons.logout)),
-            backgroundColor: Colors.green,
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    provider.scaffoldKey.currentState?.openDrawer();
-                  },
-                  icon: const Icon(
-                    Icons.menu,
-                  ))
-            ]),
         body: currentTab[provider.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
@@ -145,10 +120,6 @@ class MainScreen extends StatelessWidget {
               icon: Icon(HIcon[1]),
               label: 'Categories',
             ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(HIcon[2]),
-            //   label: 'Add to cart',
-            // ),
             BottomNavigationBarItem(
               icon: Icon(HIcon[3]),
               label: 'Profile',

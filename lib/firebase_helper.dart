@@ -95,7 +95,7 @@ class FirestoreHelper {
     }
   }
 
-  Future<List<Product>?> getAllProducts(String catId) async {
+  Future<List<Product>?> getAllProducts(String? catId) async {
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await firestore
         .collection('categories')
         .doc(catId)

@@ -13,11 +13,13 @@ class AdminProvider extends ChangeNotifier {
     getAllCategories();
     // getAllSliders();
   }
+
   String? requiredValidation(String? content) {
     if (content == null || content.isEmpty) {
       return "Required field";
     }
   }
+
   TextEditingController categoryNameController = TextEditingController();
   GlobalKey<FormState> categoryFormKey = GlobalKey<FormState>();
   File? imageFile;
@@ -32,7 +34,7 @@ class AdminProvider extends ChangeNotifier {
   // add new category
   pickImageForCategory() async {
     XFile? pickedFile =
-    await ImagePicker().pickImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       imageFile = File(pickedFile.path);
       notifyListeners();
@@ -47,11 +49,11 @@ class AdminProvider extends ChangeNotifier {
         String imageUrl = await StorageHelper.storageHelper
             .uploadNewImage("cats_images", imageFile!);
         Category category = Category(
-            imageUrl: imageUrl,
-            name: categoryNameController.text,
+          imageUrl: imageUrl,
+          name: categoryNameController.text,
         );
         String? id =
-        await FirestoreHelper.firestoreHelper.addNewCategory(category);
+            await FirestoreHelper.firestoreHelper.addNewCategory(category);
 
         AppRouter.appRouter.hideDialoug();
         if (id != null) {
@@ -70,12 +72,13 @@ class AdminProvider extends ChangeNotifier {
           .showCustomDialog('Error', 'You have to pick image first');
     }
   }
+
 //////////////////////
 //   delete category
   deleteCategory(Category category) async {
     AppRouter.appRouter.showLoadingDialoug();
     bool deleteSuccess =
-    await FirestoreHelper.firestoreHelper.deleteCategoey(category.id!);
+        await FirestoreHelper.firestoreHelper.deleteCategoey(category.id!);
     if (deleteSuccess) {
       allCategories!.remove(category);
       notifyListeners();
@@ -96,15 +99,15 @@ class AdminProvider extends ChangeNotifier {
       category.imageUrl = imageUrl;
     }
     Category newCategory = Category(
-        id: category.id,
-        imageUrl: category.imageUrl,
-        name: categoryNameController.text.isEmpty
-            ? category.name
-            : categoryNameController.text,
-        );
+      id: category.id,
+      imageUrl: category.imageUrl,
+      name: categoryNameController.text.isEmpty
+          ? category.name
+          : categoryNameController.text,
+    );
 
     bool? isUpdated =
-    await FirestoreHelper.firestoreHelper.updateCategory(newCategory);
+        await FirestoreHelper.firestoreHelper.updateCategory(newCategory);
 
     if (isUpdated != null && isUpdated) {
       int index = allCategories!.indexOf(category);
@@ -134,10 +137,11 @@ class AdminProvider extends ChangeNotifier {
             name: productNameController.text,
             description: productDescriptionController.text,
             price: productPriceController.text,
-            catId: catId, weight: '');
+            catId: catId,
+            weight: '');
 
         String? id =
-        await FirestoreHelper.firestoreHelper.addNewProduct(product);
+            await FirestoreHelper.firestoreHelper.addNewProduct(product);
 
         AppRouter.appRouter.hideDialoug();
         if (id != null) {
@@ -163,12 +167,9 @@ class AdminProvider extends ChangeNotifier {
     allProducts = null;
     notifyListeners();
     List<Product>? products =
-    await FirestoreHelper.firestoreHelper.getAllProducts(catId);
+        await FirestoreHelper.firestoreHelper.getAllProducts(catId);
 
     allProducts = products;
     notifyListeners();
   }
-
-
-
 }

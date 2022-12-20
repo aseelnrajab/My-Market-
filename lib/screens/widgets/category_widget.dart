@@ -1,11 +1,8 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../Routers/app_router.dart';
 import '../../models/categoryy.dart';
-import '../../providers/admin_provider.dart';
 import '../add/display_all_products.dart';
 
 class CategoryWidget extends StatelessWidget {
@@ -42,7 +39,9 @@ class CategoryWidget extends StatelessWidget {
                   title: Text('Category' + ': ' + category.name ?? ''),
                   trailing: InkWell(
                       onTap: () {
-                        AppRouter.appRouter.goToWidget(AllProductsScreen());
+                        AppRouter.appRouter.goToWidget(AllProductsScreen(
+                            category
+                        ));
                       }, child: const Icon(Icons.arrow_drop_down)),
                 ),
 

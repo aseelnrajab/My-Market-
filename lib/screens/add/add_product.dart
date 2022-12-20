@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../Routers/app_router.dart';
 import '../../components/custom_text_field.dart';
 import '../../providers/admin_provider.dart';
+import '../../providers/auth_provider.dart';
 
 class AddNewProduct extends StatelessWidget {
-  String catId;
+  String? catId;
+
   AddNewProduct(this.catId);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("New Product"),
+        title: const Text("New Product"),
+        leading: InkWell(
+            onTap: () {
+              AppRouter.appRouter.goToWidget(
+                  Provider.of<AuthProvider>(context, listen: false).signOut());
+            },
+            child: const Icon(Icons.logout)),
+        backgroundColor: Colors.green,
       ),
       body: Consumer<AdminProvider>(builder: (context, provider, w) {
         return Container(
@@ -22,7 +33,7 @@ class AddNewProduct extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 30,
+                  height: 100,
                 ),
                 InkWell(
                   onTap: () {
@@ -34,12 +45,12 @@ class AddNewProduct extends StatelessWidget {
                     color: Colors.grey,
                     child: provider.imageFile == null
                         ? const Center(
-                      child: Icon(Icons.camera),
-                    )
+                            child: Icon(Icons.camera),
+                          )
                         : Image.file(
-                      provider.imageFile!,
-                      fit: BoxFit.cover,
-                    ),
+                            provider.imageFile!,
+                            fit: BoxFit.cover,
+                          ),
                   ),
                 ),
                 const SizedBox(
@@ -66,17 +77,24 @@ class AddNewProduct extends StatelessWidget {
                   label: 'Product Price',
                   validation: provider.requiredValidation,
                 ),
-                const Spacer(),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      provider.addNewProduct(catId);
-                    },
-                    child: const Text('Add New Product'),
-                  ),
-                )
+                Padding(
+                    padding: const EdgeInsets.all(50.0),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20.0, vertical: 10.0),
+                            backgroundColor: Colors.green,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30))),
+                        onPressed: () {
+                          provider.addNewProduct(catId!);
+                        },
+                        child: const Text('Add New Product'),
+                      ),
+                    ))
               ],
             ),
           ),

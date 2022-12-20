@@ -1,14 +1,18 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:social_app2/models/categoryy.dart';
 
 import '../../Routers/app_router.dart';
 import '../../providers/admin_provider.dart';
 import '../widgets/product_widget.dart';
-import 'add_new_category.dart';
+import 'add_product.dart';
 
 class AllProductsScreen extends StatelessWidget {
+  Category category;
+  //
+  AllProductsScreen(this.category);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -18,22 +22,24 @@ class AllProductsScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                AppRouter.appRouter.goToWidget(AddNewCategory());
+                AppRouter.appRouter.goToWidget(AddNewProduct(
+                    category.id
+                ));
               },
-              icon:const Icon(Icons.add))
+              icon: const Icon(Icons.add))
         ],
         title: const Text('All Products'),
       ),
       body: Consumer<AdminProvider>(builder: (context, provider, w) {
         return provider.allProducts == null
             ? const Center(
-          child: CircularProgressIndicator(),
-        )
+                child: Text('No Product was added yet!'),
+              )
             : ListView.builder(
-            itemCount: provider.allProducts!.length,
-            itemBuilder: (context, index) {
-              return ProductWidget(provider.allProducts![index]);
-            });
+                itemCount: provider.allProducts!.length,
+                itemBuilder: (context, index) {
+                  return ProductWidget(provider.allProducts![index]);
+                });
       }),
     );
   }

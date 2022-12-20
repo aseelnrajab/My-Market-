@@ -25,15 +25,6 @@ class AddNewCategory extends StatelessWidget {
               },
               child: const Icon(Icons.logout)),
           backgroundColor: Colors.green,
-          // actions: [
-          //   IconButton(
-          //       onPressed: () {
-          //         provider.scaffoldKey.currentState?.openDrawer();
-          //       },
-          //       icon: const Icon(
-          //         Icons.menu,
-          //       ))
-          // ]
       ),
       body: Consumer<AdminProvider>(builder: (context, provider, w) {
         return Container(

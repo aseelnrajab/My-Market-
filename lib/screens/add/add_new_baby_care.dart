@@ -3,12 +3,10 @@ import 'package:provider/provider.dart';
 
 import '../../components/custom_text_field.dart';
 import '../../providers/admin_provider.dart';
-import '../../providers/bottom_navigation_bar_provider.dart';
 
 class AddNewBabyCare extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<BottomNavigationBarProvider>(context);
     // TODO: implement build
     return Scaffold(
       // extendBodyBehindAppBar: true,

@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:social_app2/models/categoryy.dart';
 
 import '../../Routers/app_router.dart';
 import '../../providers/admin_provider.dart';

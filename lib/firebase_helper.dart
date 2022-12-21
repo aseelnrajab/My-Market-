@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:social_app2/models/offers/offers_menu.dart';
 
 import 'models/categoryy.dart';
 import 'models/app_user.dart';
@@ -363,6 +364,60 @@ class FirestoreHelper {
           .collection('sweet_category')
           .doc(category.id)
           .update(category.toMap());
+      return true;
+    } on Exception catch (e) {
+      log(e.toString());
+      return false;
+    }
+  }
+
+
+
+
+  //Offer Collection:
+  Future<String?> addNewOffer(OffersMenu offersMenu) async {
+    try {
+      DocumentReference<Map<String, dynamic>> categoryDocument = await firestore
+          .collection('offer')
+          .add(offersMenu.toMap());
+
+      return categoryDocument.id;
+    } on Exception catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<List<OffersMenu>?> getAllOffer() async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> catsSnapshot =
+      await firestore.collection('offer').get();
+      List<OffersMenu> offersMenu = catsSnapshot.docs.map((doc) {
+        OffersMenu offersMenu = OffersMenu.fromMap(doc.data());
+        offersMenu.id = doc.id;
+        return offersMenu;
+      }).toList();
+      return offersMenu;
+    } on Exception catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<bool> deleteOffer(String catId) async {
+    try {
+      await firestore.collection('offer').doc(catId).delete();
+      return true;
+    } on Exception catch (e) {
+      log(e.toString());
+      return false;
+    }
+  }
+
+  Future<bool?> updateOffer(OffersMenu offersMenu) async {
+    try {
+      await firestore
+          .collection('offer')
+          .doc(offersMenu.id)
+          .update(offersMenu.toMap());
       return true;
     } on Exception catch (e) {
       log(e.toString());

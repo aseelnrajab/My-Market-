@@ -1,21 +1,21 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'offers_menu.dart';
 
-class OfferMenuModel extends StatelessWidget {
-  // const SideBarModel({Key? key}) : super(key: key);
+class OfferModel extends StatelessWidget {
   OffersMenu offersMenu;
 
-  OfferMenuModel(this.offersMenu);
+  OfferModel(this.offersMenu);
 
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return Container(
-      height: 150,
-      width:370,
+      width: 400,
+      decoration:const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(8.0))),
       child: Image.network(
-        offersMenu.path!,
-        fit: BoxFit.fitWidth,
+        offersMenu.imageUrl,
+        fit: BoxFit.fill,
       ),
     );
   }

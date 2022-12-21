@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:social_app2/models/offers/offers_menu.dart';
 
 import '../Routers/app_router.dart';
 import '../firebase_helper.dart';
@@ -30,6 +31,7 @@ class AdminProvider extends ChangeNotifier {
   GlobalKey<FormState> fishesCategoryFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> coffeeCategoryFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> sweetCategoryFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> offerFormKey = GlobalKey<FormState>();
   File? imageFile;
   List<Category>? allBeverage;
   List<Category>? allBabyCare;
@@ -38,6 +40,7 @@ class AdminProvider extends ChangeNotifier {
   List<Category>? allFishes;
   List<Category>? allCoffee;
   List<Category>? allSweets;
+  List<OffersMenu>? allOffers;
 
   getAllCategories() async {
     allBeverage = await FirestoreHelper.firestoreHelper.getAllBeverages();
@@ -46,6 +49,7 @@ class AdminProvider extends ChangeNotifier {
     allFishes = await FirestoreHelper.firestoreHelper.getAllFishes();
     allCoffee = await FirestoreHelper.firestoreHelper.getAllCoffees();
     allSweets = await FirestoreHelper.firestoreHelper.getAllSweets();
+    allOffers = await FirestoreHelper.firestoreHelper.getAllOffer();
 
     notifyListeners();
   }
@@ -91,6 +95,7 @@ class AdminProvider extends ChangeNotifier {
           .showCustomDialog('Error', 'You have to pick image first');
     }
   }
+
   addNewBabyCare() async {
     if (imageFile != null) {
       if (babyCareCategoryFormKey.currentState!.validate()) {
@@ -103,7 +108,7 @@ class AdminProvider extends ChangeNotifier {
           name: categoryNameController.text,
         );
         String? id =
-        await FirestoreHelper.firestoreHelper.addNewBabyCare(category);
+            await FirestoreHelper.firestoreHelper.addNewBabyCare(category);
 
         AppRouter.appRouter.hideDialoug();
         if (id != null) {
@@ -123,7 +128,6 @@ class AdminProvider extends ChangeNotifier {
     }
   }
 
-
   addNewBakeries() async {
     if (imageFile != null) {
       if (bakeriesCategoryFormKey.currentState!.validate()) {
@@ -136,7 +140,7 @@ class AdminProvider extends ChangeNotifier {
           name: categoryNameController.text,
         );
         String? id =
-        await FirestoreHelper.firestoreHelper.addNewBakery(category);
+            await FirestoreHelper.firestoreHelper.addNewBakery(category);
 
         AppRouter.appRouter.hideDialoug();
         if (id != null) {
@@ -167,8 +171,7 @@ class AdminProvider extends ChangeNotifier {
           imageUrl: imageUrl,
           name: categoryNameController.text,
         );
-        String? id =
-        await FirestoreHelper.firestoreHelper.addNewFish(category);
+        String? id = await FirestoreHelper.firestoreHelper.addNewFish(category);
 
         AppRouter.appRouter.hideDialoug();
         if (id != null) {
@@ -188,7 +191,6 @@ class AdminProvider extends ChangeNotifier {
     }
   }
 
-
   addNewCoffee() async {
     if (imageFile != null) {
       if (coffeeCategoryFormKey.currentState!.validate()) {
@@ -201,7 +203,7 @@ class AdminProvider extends ChangeNotifier {
           name: categoryNameController.text,
         );
         String? id =
-        await FirestoreHelper.firestoreHelper.addNewCoffee(category);
+            await FirestoreHelper.firestoreHelper.addNewCoffee(category);
 
         AppRouter.appRouter.hideDialoug();
         if (id != null) {
@@ -233,7 +235,7 @@ class AdminProvider extends ChangeNotifier {
           name: categoryNameController.text,
         );
         String? id =
-        await FirestoreHelper.firestoreHelper.addNewSweet(category);
+            await FirestoreHelper.firestoreHelper.addNewSweet(category);
 
         AppRouter.appRouter.hideDialoug();
         if (id != null) {
@@ -245,6 +247,37 @@ class AdminProvider extends ChangeNotifier {
           notifyListeners();
           AppRouter.appRouter
               .showCustomDialog('Success', 'Your category has been added');
+        }
+      }
+    } else {
+      AppRouter.appRouter
+          .showCustomDialog('Error', 'You have to pick image first');
+    }
+  }
+
+  addNewOffer() async {
+    if (imageFile != null) {
+      if (offerFormKey.currentState!.validate()) {
+        // add category process
+        AppRouter.appRouter.showLoadingDialoug();
+        String imageUrl = await StorageHelper.storageHelper
+            .uploadNewImage("offer_images", imageFile!);
+        OffersMenu offersMenu = OffersMenu(
+          imageUrl: imageUrl,
+        );
+        String? id =
+            await FirestoreHelper.firestoreHelper.addNewOffer(offersMenu);
+
+        AppRouter.appRouter.hideDialoug();
+        if (id != null) {
+          offersMenu.id = id;
+          allOffers?.add(offersMenu);
+          notifyListeners();
+          categoryNameController.clear();
+          imageFile = null;
+          notifyListeners();
+          AppRouter.appRouter
+              .showCustomDialog('Success', 'Your Offer has been added');
         }
       }
     } else {
@@ -356,7 +389,4 @@ class AdminProvider extends ChangeNotifier {
     allProducts = products;
     notifyListeners();
   }
-
-
-
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:social_app2/Routers/app_router.dart';
 
 import 'package:social_app2/screens/home.dart';
 import 'package:social_app2/screens/profile.dart';
@@ -52,7 +53,7 @@ class MainScreen extends StatelessWidget {
               trailing: const Icon(Icons.arrow_forward),
               title: Text(NIcon[0]),
               onTap: () {
-                currentTab[provider.currentIndex];
+                // AppRouter.appRouter.goToWidget(MainScreen(currentTab[provider.currentIndex]));
               },
             ),
             const SizedBox(
@@ -65,7 +66,7 @@ class MainScreen extends StatelessWidget {
               title: Text(NIcon[1]),
               trailing: const Icon(Icons.arrow_forward),
               onTap: () {
-                currentTab[provider.currentIndex];
+                // AppRouter.appRouter.goToWidget(currentTab[provider.currentIndex]);
               },
             ),
             const SizedBox(
@@ -78,7 +79,7 @@ class MainScreen extends StatelessWidget {
               title: Text(NIcon[2]),
               trailing: const Icon(Icons.arrow_forward),
               onTap: () {
-                currentTab[provider.currentIndex];
+                // AppRouter.appRouter.goToWidget(currentTab[provider.currentIndex]);
               },
             ),
             const SizedBox(
@@ -91,7 +92,7 @@ class MainScreen extends StatelessWidget {
               title: Text(NIcon[3]),
               trailing: const Icon(Icons.arrow_forward),
               onTap: () {
-                currentTab[provider.currentIndex];
+                // AppRouter.appRouter.goToWidget(currentTab[provider.currentIndex]);
               },
             ),
             const SizedBox(
@@ -104,7 +105,7 @@ class MainScreen extends StatelessWidget {
               title: const Text('Contact Us'),
               trailing: const Icon(Icons.arrow_forward),
               onTap: () {
-                currentTab[provider.currentIndex];
+                // AppRouter.appRouter.goToWidget(currentTab[provider.currentIndex]);
               },
             ),
           ]),

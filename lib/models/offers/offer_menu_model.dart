@@ -12,10 +12,10 @@ class OfferModel extends StatelessWidget {
     return Container(
       width: 400,
       decoration:const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(8.0))),
+        borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Image.network(
         offersMenu.imageUrl,
-        fit: BoxFit.fill,
+        fit: BoxFit.fitWidth,
       ),
     );
   }

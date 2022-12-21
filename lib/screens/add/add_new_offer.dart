@@ -43,12 +43,12 @@ class AddNewOffer extends StatelessWidget {
                       color: Colors.grey,
                       child: provider.imageFile == null
                           ? const Center(
-                        child: Icon(Icons.camera),
-                      )
+                              child: Icon(Icons.camera),
+                            )
                           : Image.file(
-                        provider.imageFile!,
-                        fit: BoxFit.cover,
-                      ),
+                              provider.imageFile!,
+                              fit: BoxFit.cover,
+                            ),
                     ),
                   ),
                   // const Spacer(),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:social_app2/screens/Home.dart';
+import 'package:social_app2/screens/home.dart';
 import 'package:social_app2/screens/profile.dart';
 
 import '../providers/bottom_navigation_bar_provider.dart';

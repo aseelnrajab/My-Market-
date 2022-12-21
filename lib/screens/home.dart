@@ -1,13 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_app2/Routers/app_router.dart';
 import 'package:social_app2/data/iconBarData.dart';
 import 'package:social_app2/providers/admin_provider.dart';
 import 'package:social_app2/screens/categories.dart';
-import '../components/custom_app_bar.dart';
+import 'package:social_app2/screens/login_screen.dart';
 import '../models/Icons/icon_bar_model.dart';
 import '../models/offers/offer_menu_model.dart';
+import '../providers/auth_provider.dart';
+import '../providers/bottom_navigation_bar_provider.dart';
 import 'Categories/Baby_care_categories.dart';
 import 'Categories/bakery.dart';
 import 'Categories/beverage_categories.dart';
@@ -17,9 +18,7 @@ import 'Categories/sweet.dart';
 import 'add/add_new_offer.dart';
 
 class HomeScreen extends StatelessWidget {
-  // const HomeScreen({Key? key}) : super(key: key);
-
-  List path = [
+  List path =const [
     AllBeveragesScreen(),
     AllBabyCareCategoriesScreen(),
     AllBakeriesCategoryScreen(),
@@ -30,9 +29,27 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<AdminProvider>(context);
+    var provider = Provider.of<BottomNavigationBarProvider>(context);
+    var provider1 = Provider.of<AdminProvider>(context);
     return Scaffold(
-        appBar: CustomAppBar('Home'),
+        appBar: AppBar(
+            title: const Text('Home'),
+            leading: InkWell(
+                onTap: () {
+                  Provider.of<AuthProvider>(context, listen: false).signOut();
+                  AppRouter.appRouter.goToWidget(SignInScreen());
+                },
+                child: const Icon(Icons.logout)),
+            backgroundColor: Colors.green,
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    provider.scaffoldKey.currentState?.openDrawer();
+                  },
+                  icon: const Icon(
+                    Icons.menu,
+                  ))
+            ]),
         body: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Expanded(
@@ -79,7 +96,7 @@ class HomeScreen extends StatelessWidget {
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             // physics: const NeverScrollableScrollPhysics(),
-                            itemCount: iconData!.length,
+                            itemCount: iconData.length,
                             itemBuilder: (context, index) {
                               return InkWell(
                                   onTap: () {
@@ -126,11 +143,11 @@ class HomeScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
+                              scrollDirection: Axis.horizontal,
                               // physics:const NeverScrollableScrollPhysics(),
-                              itemCount: provider.allOffers!.length,
+                              itemCount: provider1.allOffers!.length,
                               itemBuilder: (context, index) {
-                                return OfferModel(provider.allOffers![index]);
+                                return OfferModel(provider1.allOffers![index]);
                               }),
                         )))
               ])

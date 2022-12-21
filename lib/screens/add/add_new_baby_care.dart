@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../Routers/app_router.dart';
 import '../../components/custom_text_field.dart';
 import '../../providers/admin_provider.dart';
-import '../../providers/auth_provider.dart';
 import '../../providers/bottom_navigation_bar_provider.dart';
 
-class AddNewCategory extends StatelessWidget {
+class AddNewBabyCare extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<BottomNavigationBarProvider>(context);
@@ -16,21 +14,19 @@ class AddNewCategory extends StatelessWidget {
       // extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
-          title: const Text("New Category"),
-          leading: InkWell(
-              onTap: () {
-                AppRouter.appRouter.goToWidget(
-                    Provider.of<AuthProvider>(context, listen: false)
-                        .signOut());
-              },
-              child: const Icon(Icons.logout)),
-          backgroundColor: Colors.green,
+        title: const Text("New Baby Care Category"),
+        leading: InkWell(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: const Icon(Icons.keyboard_backspace)),
+        backgroundColor: Colors.green,
       ),
       body: Consumer<AdminProvider>(builder: (context, provider, w) {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
-            key: provider.categoryFormKey,
+            key: provider.babyCareCategoryFormKey,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -47,12 +43,12 @@ class AddNewCategory extends StatelessWidget {
                       color: Colors.grey,
                       child: provider.imageFile == null
                           ? const Center(
-                              child: Icon(Icons.camera),
-                            )
+                        child: Icon(Icons.camera),
+                      )
                           : Image.file(
-                              provider.imageFile!,
-                              fit: BoxFit.cover,
-                            ),
+                        provider.imageFile!,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -77,9 +73,9 @@ class AddNewCategory extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30))),
                         onPressed: () {
-                          provider.addNewCategory();
+                          provider.addNewBabyCare();
                         },
-                        child: const Text('Add New Category'),
+                        child: const Text('Add New Baby Care Category'),
                       ),
                     ),
                   )

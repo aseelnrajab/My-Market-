@@ -7,23 +7,37 @@ import 'package:social_app2/providers/admin_provider.dart';
 import 'package:social_app2/screens/categories.dart';
 import '../components/custom_app_bar.dart';
 import '../models/Icons/icon_bar_model.dart';
+import 'Categories/Baby_care_categories.dart';
+import 'Categories/bakery.dart';
+import 'Categories/beverage_categories.dart';
+import 'Categories/coffee.dart';
+import 'Categories/fishes.dart';
+import 'Categories/sweet.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  // const HomeScreen({Key? key}) : super(key: key);
+
+  List path = [
+    AllBeveragesScreen(),
+    AllBabyCareCategoriesScreen(),
+    AllBakeriesCategoryScreen(),
+    AllFishesCategoryScreen(),
+    AlCoffeeCategoryScreen(),
+    AllSweetsCategoryScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AdminProvider>(context);
     return Scaffold(
-      appBar:
-        CustomAppBar('Home'),
+      appBar: CustomAppBar('Home'),
       body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Expanded(
             child: SingleChildScrollView(
               child: Column(children: [
                 const SizedBox(
-                  height:50,
+                  height: 50,
                 ),
                 Row(
                   children: [
@@ -36,11 +50,11 @@ class HomeScreen extends StatelessWidget {
                           fontSize: 13),
                     ),
                     const SizedBox(
-                      width: 210,
+                      width: 200,
                     ),
                     InkWell(
                       onTap: () {
-                        AppRouter.appRouter.goToWidget( AllCategories());
+                        AppRouter.appRouter.goToWidget(AllCategories());
                       },
                       child: const Text(
                         'View All',
@@ -54,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 14,
                 ),
                 Row(children: <Widget>[
                   Expanded(
@@ -66,7 +80,12 @@ class HomeScreen extends StatelessWidget {
                               // physics: const NeverScrollableScrollPhysics(),
                               itemCount: iconData!.length,
                               itemBuilder: (context, index) {
-                                return IconBarModel(iconData[index]);
+                                return InkWell(
+                                    onTap: () {
+                                      AppRouter.appRouter
+                                          .goToWidget(path[index]);
+                                    },
+                                    child: IconBarModel(iconData[index]));
                               })))
                 ]),
                 Row(

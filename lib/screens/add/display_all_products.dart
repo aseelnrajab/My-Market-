@@ -6,12 +6,12 @@ import 'package:social_app2/models/categoryy.dart';
 import '../../Routers/app_router.dart';
 import '../../providers/admin_provider.dart';
 import '../widgets/product_widget.dart';
-import 'add_product.dart';
+import 'products/add_product.dart';
 
 class AllProductsScreen extends StatelessWidget {
-  Category category;
+  String? catId;
   //
-  AllProductsScreen(this.category);
+  AllProductsScreen(this.catId);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class AllProductsScreen extends StatelessWidget {
           IconButton(
               onPressed: () {
                 AppRouter.appRouter.goToWidget(AddNewProduct(
-                    category.id
+                    catId
                 ));
               },
               icon: const Icon(Icons.add))
@@ -44,3 +44,4 @@ class AllProductsScreen extends StatelessWidget {
     );
   }
 }
+// provider.getAllProducts(catId);

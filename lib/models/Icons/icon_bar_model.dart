@@ -13,7 +13,7 @@ class IconBarModel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(16.0),
       child: SizedBox(
         child: Column(children: [
           Icon(iconBar.iconData, color: Colors.green,size: 40,),

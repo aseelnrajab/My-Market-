@@ -40,7 +40,7 @@ class CategoryWidget extends StatelessWidget {
                   trailing: InkWell(
                       onTap: () {
                         AppRouter.appRouter.goToWidget(AllProductsScreen(
-                            category
+                            category.id
                         ));
                       }, child: const Icon(Icons.arrow_drop_down)),
                 ),

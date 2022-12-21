@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:social_app2/Routers/app_router.dart';
 
-import '../../screens/beverage_categories.dart';
 import 'icons_bar.dart';
 
 class CategoryIconBar extends StatelessWidget {
@@ -16,7 +14,7 @@ class CategoryIconBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:const  EdgeInsets.all(20),
+      margin:const  EdgeInsets.all(15),
       child: ListTile(
         title: Text(
           iconBar.name ?? '',

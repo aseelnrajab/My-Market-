@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../Routers/app_router.dart';
-import '../providers/auth_provider.dart';
 import '../providers/bottom_navigation_bar_provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -18,11 +16,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         title: Text(text),
         leading: InkWell(
             onTap: () {
-              AppRouter.appRouter
-                  .goToWidget(
-                  Provider.of<AuthProvider>(context, listen: false).signOut());
+              Navigator.of(context).pop();
             },
-            child: const Icon(Icons.logout)),
+            child: const Icon(Icons.keyboard_backspace_rounded)),
         backgroundColor: Colors.green,
         actions: [
           IconButton(

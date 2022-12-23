@@ -1,38 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_app2/Routers/app_router.dart';
-import 'package:social_app2/screens/widgets/category_widget.dart';
-import '../../components/custom_app_bar.dart';
-import '../../providers/admin_provider.dart';
-import '../add/add_new_coffee.dart';
+import '../../../../components/custom_app_bar.dart';
+import '../../../../providers/admin_provider.dart';
+import '../add/add_new_fishes.dart';
+import '../../../widgets/fish_category_widget.dart';
 
-class AlCoffeeCategoryScreen extends StatelessWidget {
-  const AlCoffeeCategoryScreen({Key? key}) : super(key: key);
+class AllFishesCategoryScreen extends StatelessWidget {
+  const AllFishesCategoryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar('Coffee Categories'),
+        appBar: CustomAppBar('Fishes Categories'),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.green,
           onPressed: () {
-            AppRouter.appRouter.goToWidget(AddNewCoffee());
+            AppRouter.appRouter.goToWidget(AddNewFishes());
           },
           child: const Icon(
             Icons.add,
           ),
         ),
         body: Consumer<AdminProvider>(builder: (context, provider, w) {
-          return provider.allCoffee == null
+          return provider.allFishes == null
               ? const Center(
-            child: Text('No Coffee Category Found'),
+            child: Text('No Fish Category Found'),
           )
               : Padding(
             padding: const EdgeInsets.only(top: 10),
             child: ListView.builder(
-                itemCount: provider.allCoffee!.length,
+                itemCount: provider.allFishes!.length,
                 itemBuilder: (context, index) {
-                  return CategoryWidget(provider.allCoffee![index]);
+                  return FishCategoryWidget(provider.allFishes![index]);
                 }),
           );
         }));

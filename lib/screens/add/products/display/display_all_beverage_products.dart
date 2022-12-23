@@ -1,16 +1,16 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../Routers/app_router.dart';
-import '../../providers/admin_provider.dart';
-import '../widgets/product_widget.dart';
-import 'products/add_product.dart';
+import '../../../../Routers/app_router.dart';
+import '../../../../providers/admin_provider.dart';
+import '../../../widgets/product_widget.dart';
+import '../add/add_beverage_product.dart';
 
-class AllProductsScreen extends StatelessWidget {
+class AllBeverageProductsScreen extends StatelessWidget {
   String? catId;
+
   //
-  AllProductsScreen(this.catId);
+  AllBeverageProductsScreen(this.catId);
 
   @override
   Widget build(BuildContext context) {
@@ -21,23 +21,21 @@ class AllProductsScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                AppRouter.appRouter.goToWidget(AddNewProduct(
-                    catId
-                ));
+                AppRouter.appRouter.goToWidget(AddNewBeverageProduct(catId));
               },
               icon: const Icon(Icons.add))
         ],
-        title: const Text('All Products'),
+        title: const Text('All Beverage Products'),
       ),
       body: Consumer<AdminProvider>(builder: (context, provider, w) {
-        return provider.allProducts == null
+        return provider.allBeverageProducts == null
             ? const Center(
-                child: Text('No Product was added yet!'),
+                child: Text('No Beverage Product was added yet!'),
               )
             : ListView.builder(
-                itemCount: provider.allProducts!.length,
+                itemCount: provider.allBeverageProducts!.length,
                 itemBuilder: (context, index) {
-                  return ProductWidget(provider.allProducts![index]);
+                  return ProductWidget(provider.allBeverageProducts![index]);
                 });
       }),
     );

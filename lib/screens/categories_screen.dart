@@ -2,23 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_app2/Routers/app_router.dart';
-import 'package:social_app2/screens/Categories/beverage_categories.dart';
-import 'package:social_app2/screens/Categories/fishes.dart';
+import 'package:social_app2/screens/add/category/display/beverage_categories.dart';
+import 'package:social_app2/screens/add/category/display/fishes.dart';
 
 import '../data/iconBarData.dart';
 import '../models/Icons/category_icons_bar.dart';
 import '../providers/auth_provider.dart';
 import '../providers/bottom_navigation_bar_provider.dart';
-import 'Categories/Baby_care_categories.dart';
-import 'Categories/bakery.dart';
-import 'Categories/coffee.dart';
-import 'Categories/sweet.dart';
+import 'add/category/display/all_snack_categories.dart';
+import 'add/category/display/bakery.dart';
+import 'add/category/display/coffee.dart';
+import 'add/category/display/sweet.dart';
 import 'login_screen.dart';
 
 class AllCategories extends StatelessWidget {
   List path = [
     AllBeveragesScreen(),
-    AllBabyCareCategoriesScreen(),
+    AllSnackCategoriesScreen(),
     AllBakeriesCategoryScreen(),
     AllFishesCategoryScreen(),
     AlCoffeeCategoryScreen(),

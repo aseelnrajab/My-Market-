@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../components/custom_text_field.dart';
-import '../../providers/admin_provider.dart';
+import '../../../../components/custom_text_field.dart';
+import '../../../../providers/admin_provider.dart';
 
-class AddNewBeverage extends StatelessWidget {
+class AddNewFishes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("New Beverage Category"),
+        title: const Text("New Fishes Category"),
         leading: InkWell(
             onTap: () {
               Navigator.of(context).pop();
@@ -23,7 +23,7 @@ class AddNewBeverage extends StatelessWidget {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
-            key: provider.beverageCategoryFormKey,
+            key: provider.fishesCategoryFormKey,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -40,12 +40,12 @@ class AddNewBeverage extends StatelessWidget {
                       color: Colors.grey,
                       child: provider.imageFile == null
                           ? const Center(
-                              child: Icon(Icons.camera),
-                            )
+                        child: Icon(Icons.camera),
+                      )
                           : Image.file(
-                              provider.imageFile!,
-                              fit: BoxFit.cover,
-                            ),
+                        provider.imageFile!,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -70,9 +70,9 @@ class AddNewBeverage extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30))),
                         onPressed: () {
-                          provider.addNewBeverage();
+                          provider.addNewFishes();
                         },
-                        child: const Text('Add New Category'),
+                        child: const Text('Add New Fish Category'),
                       ),
                     ),
                   )

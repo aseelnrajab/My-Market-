@@ -3,24 +3,24 @@ import 'package:provider/provider.dart';
 import 'package:social_app2/Routers/app_router.dart';
 import 'package:social_app2/data/iconBarData.dart';
 import 'package:social_app2/providers/admin_provider.dart';
-import 'package:social_app2/screens/categories.dart';
+import 'package:social_app2/screens/categories_screen.dart';
 import 'package:social_app2/screens/login_screen.dart';
 import '../models/Icons/icon_bar_model.dart';
 import '../models/offers/offer_menu_model.dart';
 import '../providers/auth_provider.dart';
 import '../providers/bottom_navigation_bar_provider.dart';
-import 'Categories/Baby_care_categories.dart';
-import 'Categories/bakery.dart';
-import 'Categories/beverage_categories.dart';
-import 'Categories/coffee.dart';
-import 'Categories/fishes.dart';
-import 'Categories/sweet.dart';
-import 'add/add_new_offer.dart';
+import 'add/category/add/add_new_offer.dart';
+import 'add/category/display/all_snack_categories.dart';
+import 'add/category/display/bakery.dart';
+import 'add/category/display/beverage_categories.dart';
+import 'add/category/display/coffee.dart';
+import 'add/category/display/fishes.dart';
+import 'add/category/display/sweet.dart';
 
 class HomeScreen extends StatelessWidget {
   List path =const [
     AllBeveragesScreen(),
-    AllBabyCareCategoriesScreen(),
+    AllSnackCategoriesScreen(),
     AllBakeriesCategoryScreen(),
     AllFishesCategoryScreen(),
     AlCoffeeCategoryScreen(),
@@ -44,10 +44,10 @@ class HomeScreen extends StatelessWidget {
             actions: [
               IconButton(
                   onPressed: () {
-                    provider.scaffoldKey.currentState?.openDrawer();
+                    // provider.scaffoldKey.currentState?.openDrawer();
                   },
                   icon: const Icon(
-                    Icons.menu,
+                    Icons.shopping_cart,
                   ))
             ]),
         body: Container(

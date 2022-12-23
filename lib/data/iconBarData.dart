@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 
 import '../models/Icons/icon_bar_model.dart';
 import '../models/Icons/icons_bar.dart';
-
 
 List<IconBar> iconData = [
   IconBar(
@@ -11,8 +9,8 @@ List<IconBar> iconData = [
     name: "Beverages",
   ),
   IconBar(
-    iconData: Icons.baby_changing_station,
-    name: "Baby Care",
+    iconData: Icons.cookie,
+    name: "Snacks",
   ),
   IconBar(
     iconData: Icons.bakery_dining,
@@ -30,5 +28,4 @@ List<IconBar> iconData = [
     iconData: Icons.cake,
     name: "Sweet",
   ),
-
 ];

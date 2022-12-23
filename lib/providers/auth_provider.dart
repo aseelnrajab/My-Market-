@@ -17,6 +17,7 @@ import '../storage_helper.dart';
 class AuthProvider with ChangeNotifier {
   GlobalKey<FormState> signInKey = GlobalKey();
   GlobalKey<FormState> signUpKey = GlobalKey();
+  GlobalKey<FormState> editKey = GlobalKey();
   TextEditingController userNameController = TextEditingController();
   TextEditingController phoneNumEditingController = TextEditingController();
   TextEditingController registerEmailController = TextEditingController();
@@ -119,4 +120,17 @@ class AuthProvider with ChangeNotifier {
     await FirestoreHelper.firestoreHelper.updateTheUser(loggedUser!);
     getUser(loggedUser!.id!);
   }
-}
+  // updateUser()async{
+  //   if (editKey.currentState!.validate()) {
+  //     editKey.currentState!.save();
+  //     String? userId = await AuthHelper.authHelper
+  //         .(loginEmailController.text, passwordLoginController.text);
+  //     if (userId != null) {
+  //       loggedUser =
+  //           await FirestoreHelper.firestoreHelper.getUserFromFirestore(userId);
+  //       notifyListeners();
+  //       AppRouter.appRouter.goToWidgetAndReplace(MainScreen());
+  //     }
+  //   }
+  // }
+  }

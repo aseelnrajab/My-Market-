@@ -3,20 +3,20 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../components/custom_text_field.dart';
-import '../../../providers/admin_provider.dart';
+import '../../../../components/custom_text_field.dart';
+import '../../../../providers/admin_provider.dart';
 
-class AddNewProduct extends StatelessWidget {
+class AddNewSweetProduct extends StatelessWidget {
   String? catId;
 
-  AddNewProduct(this.catId);
+  AddNewSweetProduct(this.catId);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: const Text("New Product"),
+        title: const Text("New Sweet Product"),
         leading: InkWell(
             onTap: () {
               Navigator.of(context).pop();
@@ -28,7 +28,7 @@ class AddNewProduct extends StatelessWidget {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
-            key: provider.addProductKey,
+            key: provider.addSweetProductKey,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -45,12 +45,12 @@ class AddNewProduct extends StatelessWidget {
                       color: Colors.grey,
                       child: provider.imageFile == null
                           ? const Center(
-                              child: Icon(Icons.camera),
-                            )
+                        child: Icon(Icons.camera),
+                      )
                           : Image.file(
-                              provider.imageFile!,
-                              fit: BoxFit.cover,
-                            ),
+                        provider.imageFile!,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -91,9 +91,9 @@ class AddNewProduct extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(30))),
                           onPressed: () {
                             log(catId!);
-                            provider.addNewProduct(catId!);
+                            provider.addNewSweetProduct(catId!);
                           },
-                          child: const Text('Add New Product'),
+                          child: const Text('Add New Sweet Product'),
                         ),
                       )),
                   // Padding(

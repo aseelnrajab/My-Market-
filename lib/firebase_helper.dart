@@ -96,13 +96,10 @@ class FirestoreHelper {
     }
   }
 
-  Future<List<Product>?> getAllProducts(String? catId) async {
-    log('wsdefrytjkjlkhghfg');
-    QuerySnapshot<Map<String, dynamic>> querySnapshot = await firestore
-        .collection('beverage_category')
-        .doc(catId)
-        .collection('products')
-        .get();
+  Future<List<Product>?> getAllBeverageProducts() async {
+    // log('wsdefrytjkjlkhghfg');
+    QuerySnapshot<Map<String, dynamic>> querySnapshot =
+        await firestore.collection('beverage_category').get();
     return querySnapshot.docs.map((e) {
       Product product = Product.fromMap(e.data());
       product.id = e.id;
@@ -137,6 +134,16 @@ class FirestoreHelper {
       log(e.toString());
     }
   }
+  Future<List<Product>?> getAllBabyCareProducts() async {
+    // log('wsdefrytjkjlkhghfg');
+    QuerySnapshot<Map<String, dynamic>> querySnapshot =
+    await firestore.collection('baby_care_category').get();
+    return querySnapshot.docs.map((e) {
+      Product product = Product.fromMap(e.data());
+      product.id = e.id;
+      return product;
+    }).toList();
+  }
 
   Future<bool> deleteBabyCare(String catId) async {
     try {
@@ -161,14 +168,11 @@ class FirestoreHelper {
     }
   }
 
-
-
   //Bakery Category Collection:
   Future<String?> addNewBakery(Category category) async {
     try {
-      DocumentReference<Map<String, dynamic>> categoryDocument = await firestore
-          .collection('bakery_category')
-          .add(category.toMap());
+      DocumentReference<Map<String, dynamic>> categoryDocument =
+          await firestore.collection('bakery_category').add(category.toMap());
 
       return categoryDocument.id;
     } on Exception catch (e) {
@@ -179,7 +183,7 @@ class FirestoreHelper {
   Future<List<Category>?> getAllBakeries() async {
     try {
       QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-      await firestore.collection('bakery_category').get();
+          await firestore.collection('bakery_category').get();
       List<Category> categories = catsSnapshot.docs.map((doc) {
         Category category = Category.fromMap(doc.data());
         category.id = doc.id;
@@ -190,6 +194,20 @@ class FirestoreHelper {
       log(e.toString());
     }
   }
+
+
+  Future<List<Product>?> getAllBakeryProducts() async {
+    // log('wsdefrytjkjlkhghfg');
+    QuerySnapshot<Map<String, dynamic>> querySnapshot =
+    await firestore.collection('bakery_category').get();
+    return querySnapshot.docs.map((e) {
+      Product product = Product.fromMap(e.data());
+      product.id = e.id;
+      return product;
+    }).toList();
+  }
+
+
 
   Future<bool> deleteBakeries(String catId) async {
     try {
@@ -214,15 +232,11 @@ class FirestoreHelper {
     }
   }
 
-
-
-
   //Fish Category Collection:
   Future<String?> addNewFish(Category category) async {
     try {
-      DocumentReference<Map<String, dynamic>> categoryDocument = await firestore
-          .collection('fish_category')
-          .add(category.toMap());
+      DocumentReference<Map<String, dynamic>> categoryDocument =
+          await firestore.collection('fish_category').add(category.toMap());
 
       return categoryDocument.id;
     } on Exception catch (e) {
@@ -233,7 +247,7 @@ class FirestoreHelper {
   Future<List<Category>?> getAllFishes() async {
     try {
       QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-      await firestore.collection('fish_category').get();
+          await firestore.collection('fish_category').get();
       List<Category> categories = catsSnapshot.docs.map((doc) {
         Category category = Category.fromMap(doc.data());
         category.id = doc.id;
@@ -244,6 +258,19 @@ class FirestoreHelper {
       log(e.toString());
     }
   }
+
+
+  Future<List<Product>?> getAllfishProducts() async {
+    // log('wsdefrytjkjlkhghfg');
+    QuerySnapshot<Map<String, dynamic>> querySnapshot =
+    await firestore.collection('fish_category').get();
+    return querySnapshot.docs.map((e) {
+      Product product = Product.fromMap(e.data());
+      product.id = e.id;
+      return product;
+    }).toList();
+  }
+
 
   Future<bool> deleteFishes(String catId) async {
     try {
@@ -265,67 +292,75 @@ class FirestoreHelper {
     } on Exception catch (e) {
       log(e.toString());
       return false;
-    }}
-
-
-    //Coffee Category Collection:
-    Future<String?> addNewCoffee(Category category) async {
-      try {
-        DocumentReference<Map<String, dynamic>> categoryDocument = await firestore
-            .collection('coffee_category')
-            .add(category.toMap());
-
-        return categoryDocument.id;
-      } on Exception catch (e) {
-        log(e.toString());
-      }
     }
-
-    Future<List<Category>?> getAllCoffees() async {
-      try {
-        QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-        await firestore.collection('coffee_category').get();
-        List<Category> categories = catsSnapshot.docs.map((doc) {
-          Category category = Category.fromMap(doc.data());
-          category.id = doc.id;
-          return category;
-        }).toList();
-        return categories;
-      } on Exception catch (e) {
-        log(e.toString());
-      }
-    }
-
-    Future<bool> deleteCoffee(String catId) async {
-      try {
-        await firestore.collection('coffee_category').doc(catId).delete();
-        return true;
-      } on Exception catch (e) {
-        log(e.toString());
-        return false;
-      }
-    }
-
-    Future<bool?> updateCoffee(Category category) async {
-      try {
-        await firestore
-            .collection('coffee_category')
-            .doc(category.id)
-            .update(category.toMap());
-        return true;
-      } on Exception catch (e) {
-        log(e.toString());
-        return false;
-      }
   }
 
+  //Coffee Category Collection:
+  Future<String?> addNewCoffee(Category category) async {
+    try {
+      DocumentReference<Map<String, dynamic>> categoryDocument =
+          await firestore.collection('coffee_category').add(category.toMap());
+
+      return categoryDocument.id;
+    } on Exception catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<List<Category>?> getAllCoffees() async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> catsSnapshot =
+          await firestore.collection('coffee_category').get();
+      List<Category> categories = catsSnapshot.docs.map((doc) {
+        Category category = Category.fromMap(doc.data());
+        category.id = doc.id;
+        return category;
+      }).toList();
+      return categories;
+    } on Exception catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<List<Product>?> getAllCoffeeProducts() async {
+    // log('wsdefrytjkjlkhghfg');
+    QuerySnapshot<Map<String, dynamic>> querySnapshot =
+    await firestore.collection('coffee_category').get();
+    return querySnapshot.docs.map((e) {
+      Product product = Product.fromMap(e.data());
+      product.id = e.id;
+      return product;
+    }).toList();
+  }
+
+  Future<bool> deleteCoffee(String catId) async {
+    try {
+      await firestore.collection('coffee_category').doc(catId).delete();
+      return true;
+    } on Exception catch (e) {
+      log(e.toString());
+      return false;
+    }
+  }
+
+  Future<bool?> updateCoffee(Category category) async {
+    try {
+      await firestore
+          .collection('coffee_category')
+          .doc(category.id)
+          .update(category.toMap());
+      return true;
+    } on Exception catch (e) {
+      log(e.toString());
+      return false;
+    }
+  }
 
   //Sweet Category Collection:
   Future<String?> addNewSweet(Category category) async {
     try {
-      DocumentReference<Map<String, dynamic>> categoryDocument = await firestore
-          .collection('sweet_category')
-          .add(category.toMap());
+      DocumentReference<Map<String, dynamic>> categoryDocument =
+          await firestore.collection('sweet_category').add(category.toMap());
 
       return categoryDocument.id;
     } on Exception catch (e) {
@@ -336,7 +371,7 @@ class FirestoreHelper {
   Future<List<Category>?> getAllSweets() async {
     try {
       QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-      await firestore.collection('sweet_category').get();
+          await firestore.collection('sweet_category').get();
       List<Category> categories = catsSnapshot.docs.map((doc) {
         Category category = Category.fromMap(doc.data());
         category.id = doc.id;
@@ -346,6 +381,16 @@ class FirestoreHelper {
     } on Exception catch (e) {
       log(e.toString());
     }
+  }
+  Future<List<Product>?> getAllSweetProducts() async {
+    // log('wsdefrytjkjlkhghfg');
+    QuerySnapshot<Map<String, dynamic>> querySnapshot =
+    await firestore.collection('sweet_category').get();
+    return querySnapshot.docs.map((e) {
+      Product product = Product.fromMap(e.data());
+      product.id = e.id;
+      return product;
+    }).toList();
   }
 
   Future<bool> deleteSweet(String catId) async {
@@ -371,15 +416,11 @@ class FirestoreHelper {
     }
   }
 
-
-
-
   //Offer Collection:
   Future<String?> addNewOffer(OffersMenu offersMenu) async {
     try {
-      DocumentReference<Map<String, dynamic>> categoryDocument = await firestore
-          .collection('offer')
-          .add(offersMenu.toMap());
+      DocumentReference<Map<String, dynamic>> categoryDocument =
+          await firestore.collection('offer').add(offersMenu.toMap());
 
       return categoryDocument.id;
     } on Exception catch (e) {
@@ -390,7 +431,7 @@ class FirestoreHelper {
   Future<List<OffersMenu>?> getAllOffer() async {
     try {
       QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-      await firestore.collection('offer').get();
+          await firestore.collection('offer').get();
       List<OffersMenu> offersMenu = catsSnapshot.docs.map((doc) {
         OffersMenu offersMenu = OffersMenu.fromMap(doc.data());
         offersMenu.id = doc.id;

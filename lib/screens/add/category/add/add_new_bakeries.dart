@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../providers/admin_provider.dart';
 
-class AddNewOffer extends StatelessWidget {
+import '../../../../components/custom_text_field.dart';
+import '../../../../providers/admin_provider.dart';
+
+
+class AddNewBakeries extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("New Offer!"),
+        title: const Text("New Bakeries Category"),
         leading: InkWell(
             onTap: () {
               Navigator.of(context).pop();
@@ -21,7 +24,7 @@ class AddNewOffer extends StatelessWidget {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
-            key: provider.offerFormKey,
+            key: provider.bakeriesCategoryFormKey,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -38,13 +41,21 @@ class AddNewOffer extends StatelessWidget {
                       color: Colors.grey,
                       child: provider.imageFile == null
                           ? const Center(
-                              child: Icon(Icons.camera),
-                            )
+                        child: Icon(Icons.camera),
+                      )
                           : Image.file(
-                              provider.imageFile!,
-                              fit: BoxFit.cover,
-                            ),
+                        provider.imageFile!,
+                        fit: BoxFit.cover,
+                      ),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  CustomTextfield(
+                    controller: provider.categoryNameController,
+                    label: 'Category name',
+                    validation: provider.requiredValidation,
                   ),
                   // const Spacer(),
                   Padding(
@@ -60,9 +71,9 @@ class AddNewOffer extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30))),
                         onPressed: () {
-                          provider.addNewOffer();
+                          provider.addNewBakeries();
                         },
-                        child: const Text('Add New Offer!'),
+                        child: const Text('Add New Bakery Category'),
                       ),
                     ),
                   )

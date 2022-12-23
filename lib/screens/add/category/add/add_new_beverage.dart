@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../components/custom_text_field.dart';
-import '../../providers/admin_provider.dart';
+import '../../../../components/custom_text_field.dart';
+import '../../../../providers/admin_provider.dart';
 
-class AddNewBabyCare extends StatelessWidget {
+class AddNewBeverage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      // extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("New Baby Care Category"),
+        title: const Text("New Beverage Category"),
         leading: InkWell(
             onTap: () {
               Navigator.of(context).pop();
@@ -24,7 +23,7 @@ class AddNewBabyCare extends StatelessWidget {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
-            key: provider.babyCareCategoryFormKey,
+            key: provider.beverageCategoryFormKey,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -41,12 +40,12 @@ class AddNewBabyCare extends StatelessWidget {
                       color: Colors.grey,
                       child: provider.imageFile == null
                           ? const Center(
-                        child: Icon(Icons.camera),
-                      )
+                              child: Icon(Icons.camera),
+                            )
                           : Image.file(
-                        provider.imageFile!,
-                        fit: BoxFit.cover,
-                      ),
+                              provider.imageFile!,
+                              fit: BoxFit.cover,
+                            ),
                     ),
                   ),
                   const SizedBox(
@@ -71,9 +70,9 @@ class AddNewBabyCare extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30))),
                         onPressed: () {
-                          provider.addNewBabyCare();
+                          provider.addNewBeverage();
                         },
-                        child: const Text('Add New Baby Care Category'),
+                        child: const Text('Add New Category'),
                       ),
                     ),
                   )

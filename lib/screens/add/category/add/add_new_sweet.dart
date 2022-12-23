@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../components/custom_text_field.dart';
-import '../../providers/admin_provider.dart';
+import '../../../../components/custom_text_field.dart';
+import '../../../../providers/admin_provider.dart';
 
-class AddNewBakeries extends StatelessWidget {
+class AddNewSweet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("New Bakeries Category"),
+        title: const Text("New Sweet Category"),
         leading: InkWell(
             onTap: () {
               Navigator.of(context).pop();
@@ -23,7 +23,7 @@ class AddNewBakeries extends StatelessWidget {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
-            key: provider.bakeriesCategoryFormKey,
+            key: provider.sweetCategoryFormKey,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -70,9 +70,9 @@ class AddNewBakeries extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30))),
                         onPressed: () {
-                          provider.addNewBakeries();
+                          provider.addNewSweet();
                         },
-                        child: const Text('Add New Bakery Category'),
+                        child: const Text('Add New Coffee Category'),
                       ),
                     ),
                   )

@@ -14,7 +14,7 @@ class AdminProvider extends ChangeNotifier {
 
   AdminProvider() {
     getAllCategories();
-    // getAllProducts(pro);
+    getAllProducts();
     // getAllSliders();
   }
 
@@ -26,16 +26,17 @@ class AdminProvider extends ChangeNotifier {
 
   TextEditingController categoryNameController = TextEditingController();
   GlobalKey<FormState> beverageCategoryFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> babyCareCategoryFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> snackCategoryFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> bakeriesCategoryFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> fishesCategoryFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> coffeeCategoryFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> sweetCategoryFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> offerFormKey = GlobalKey<FormState>();
+
+
   File? imageFile;
   List<Category>? allBeverage;
-  List<Category>? allBabyCare;
-  List<Product>? allProducts;
+  List<Category>? allsnack;
   List<Category>? allBakeries;
   List<Category>? allFishes;
   List<Category>? allCoffee;
@@ -44,7 +45,7 @@ class AdminProvider extends ChangeNotifier {
 
   getAllCategories() async {
     allBeverage = await FirestoreHelper.firestoreHelper.getAllBeverages();
-    allBabyCare = await FirestoreHelper.firestoreHelper.getAllBabyCares();
+    allsnack = await FirestoreHelper.firestoreHelper.getAllBabyCares();
     allBakeries = await FirestoreHelper.firestoreHelper.getAllBakeries();
     allFishes = await FirestoreHelper.firestoreHelper.getAllFishes();
     allCoffee = await FirestoreHelper.firestoreHelper.getAllCoffees();
@@ -96,13 +97,13 @@ class AdminProvider extends ChangeNotifier {
     }
   }
 
-  addNewBabyCare() async {
+  addNewSnack() async {
     if (imageFile != null) {
-      if (babyCareCategoryFormKey.currentState!.validate()) {
+      if (snackCategoryFormKey.currentState!.validate()) {
         // add category process
         AppRouter.appRouter.showLoadingDialoug();
         String imageUrl = await StorageHelper.storageHelper
-            .uploadNewImage("babyCare_images", imageFile!);
+            .uploadNewImage("snack_images", imageFile!);
         Category category = Category(
           imageUrl: imageUrl,
           name: categoryNameController.text,
@@ -113,7 +114,7 @@ class AdminProvider extends ChangeNotifier {
         AppRouter.appRouter.hideDialoug();
         if (id != null) {
           category.id = id;
-          allBabyCare?.add(category);
+          allsnack?.add(category);
           notifyListeners();
           categoryNameController.clear();
           imageFile = null;
@@ -337,14 +338,24 @@ class AdminProvider extends ChangeNotifier {
   TextEditingController productDescriptionController = TextEditingController();
   TextEditingController productPriceController = TextEditingController();
   TextEditingController productWeightController = TextEditingController();
-  GlobalKey<FormState> addProductKey = GlobalKey();
 
-  addNewProduct(String catId) async {
+
+  GlobalKey<FormState> addBeverageProductKey = GlobalKey();
+  GlobalKey<FormState> addSnackProductKey = GlobalKey();
+  GlobalKey<FormState> addBakeryProductKey = GlobalKey();
+  GlobalKey<FormState> addFishProductKey = GlobalKey();
+  GlobalKey<FormState> addSweetProductKey = GlobalKey();
+  GlobalKey<FormState> addCoffeeProductKey = GlobalKey();
+
+
+
+
+  addNewBeverageProduct(String catId) async {
     if (imageFile != null) {
-      if (addProductKey.currentState!.validate()) {
+      if (addBeverageProductKey.currentState!.validate()) {
         AppRouter.appRouter.showLoadingDialoug();
         String imageUrl = await StorageHelper.storageHelper
-            .uploadNewImage("products_images", imageFile!);
+            .uploadNewImage("beverage_products_images", imageFile!);
         Product product = Product(
             imageUrl: imageUrl,
             name: productNameController.text,
@@ -359,7 +370,7 @@ class AdminProvider extends ChangeNotifier {
         AppRouter.appRouter.hideDialoug();
         if (id != null) {
           product.id = id;
-          allProducts?.add(product);
+          allBeverageProducts?.add(product);
           notifyListeners();
           productNameController.clear();
           productDescriptionController.clear();
@@ -378,15 +389,284 @@ class AdminProvider extends ChangeNotifier {
     }
   }
 
-  getAllProducts(String catId) async {
+  addNewSnackProduct(String catId) async {
+    if (imageFile != null) {
+      if (addSnackProductKey.currentState!.validate()) {
+        AppRouter.appRouter.showLoadingDialoug();
+        String imageUrl = await StorageHelper.storageHelper
+            .uploadNewImage("snack_products_images", imageFile!);
+        Product product = Product(
+            imageUrl: imageUrl,
+            name: productNameController.text,
+            description: productDescriptionController.text,
+            price: productPriceController.text,
+            catId: catId,
+            weight: '');
+
+        String? id =
+            await FirestoreHelper.firestoreHelper.addNewProduct(product);
+
+        AppRouter.appRouter.hideDialoug();
+        if (id != null) {
+          product.id = id;
+          allSnackProducts?.add(product);
+          notifyListeners();
+          productNameController.clear();
+          productDescriptionController.clear();
+          productPriceController.clear();
+          imageFile = null;
+          notifyListeners();
+          AppRouter.appRouter
+              .showCustomDialog('Success', 'Your Product has been added');
+          // log(catId);
+          // AppRouter.appRouter.goToWidget(AllProductsScreen(catId));
+        }
+      }
+    } else {
+      AppRouter.appRouter
+          .showCustomDialog('Error', 'You have to pick image first');
+    }
+  }
+
+  addNewBakeryProduct(String catId) async {
+    if (imageFile != null) {
+      if (addBakeryProductKey.currentState!.validate()) {
+        AppRouter.appRouter.showLoadingDialoug();
+        String imageUrl = await StorageHelper.storageHelper
+            .uploadNewImage("bakery_products_images", imageFile!);
+        Product product = Product(
+            imageUrl: imageUrl,
+            name: productNameController.text,
+            description: productDescriptionController.text,
+            price: productPriceController.text,
+            catId: catId,
+            weight: '');
+
+        String? id =
+            await FirestoreHelper.firestoreHelper.addNewProduct(product);
+
+        AppRouter.appRouter.hideDialoug();
+        if (id != null) {
+          product.id = id;
+          allBakeryProducts?.add(product);
+          notifyListeners();
+          productNameController.clear();
+          productDescriptionController.clear();
+          productPriceController.clear();
+          imageFile = null;
+          notifyListeners();
+          AppRouter.appRouter
+              .showCustomDialog('Success', 'Your Product has been added');
+          // log(catId);
+          // AppRouter.appRouter.goToWidget(AllProductsScreen(catId));
+        }
+      }
+    } else {
+      AppRouter.appRouter
+          .showCustomDialog('Error', 'You have to pick image first');
+    }
+  }
+
+  addNewFishesProduct(String catId) async {
+    if (imageFile != null) {
+      if (addFishProductKey.currentState!.validate()) {
+        AppRouter.appRouter.showLoadingDialoug();
+        String imageUrl = await StorageHelper.storageHelper
+            .uploadNewImage("fishes_images", imageFile!);
+        Product product = Product(
+            imageUrl: imageUrl,
+            name: productNameController.text,
+            description: productDescriptionController.text,
+            price: productPriceController.text,
+            catId: catId,
+            weight: '');
+
+        String? id =
+            await FirestoreHelper.firestoreHelper.addNewProduct(product);
+
+        AppRouter.appRouter.hideDialoug();
+        if (id != null) {
+          product.id = id;
+          allFishProducts?.add(product);
+          notifyListeners();
+          productNameController.clear();
+          productDescriptionController.clear();
+          productPriceController.clear();
+          imageFile = null;
+          notifyListeners();
+          AppRouter.appRouter
+              .showCustomDialog('Success', 'Your Product has been added');
+          // log(catId);
+          // AppRouter.appRouter.goToWidget(AllProductsScreen(catId));
+        }
+      }
+    } else {
+      AppRouter.appRouter
+          .showCustomDialog('Error', 'You have to pick image first');
+    }
+  }
+  addNewCoffeeProduct(String catId) async {
+    if (imageFile != null) {
+      if (addCoffeeProductKey.currentState!.validate()) {
+        AppRouter.appRouter.showLoadingDialoug();
+        String imageUrl = await StorageHelper.storageHelper
+            .uploadNewImage("coffee_images", imageFile!);
+        Product product = Product(
+            imageUrl: imageUrl,
+            name: productNameController.text,
+            description: productDescriptionController.text,
+            price: productPriceController.text,
+            catId: catId,
+            weight: '');
+
+        String? id =
+            await FirestoreHelper.firestoreHelper.addNewProduct(product);
+
+        AppRouter.appRouter.hideDialoug();
+        if (id != null) {
+          product.id = id;
+          allCoffeeProducts?.add(product);
+          notifyListeners();
+          productNameController.clear();
+          productDescriptionController.clear();
+          productPriceController.clear();
+          imageFile = null;
+          notifyListeners();
+          AppRouter.appRouter
+              .showCustomDialog('Success', 'Your Product has been added');
+          // log(catId);
+          // AppRouter.appRouter.goToWidget(AllProductsScreen(catId));
+        }
+      }
+    } else {
+      AppRouter.appRouter
+          .showCustomDialog('Error', 'You have to pick image first');
+    }
+  }
+  addNewSweetProduct(String catId) async {
+    if (imageFile != null) {
+      if (addSweetProductKey.currentState!.validate()) {
+        AppRouter.appRouter.showLoadingDialoug();
+        String imageUrl = await StorageHelper.storageHelper
+            .uploadNewImage("sweet_images", imageFile!);
+        Product product = Product(
+            imageUrl: imageUrl,
+            name: productNameController.text,
+            description: productDescriptionController.text,
+            price: productPriceController.text,
+            catId: catId,
+            weight: '');
+
+        String? id =
+            await FirestoreHelper.firestoreHelper.addNewProduct(product);
+
+        AppRouter.appRouter.hideDialoug();
+        if (id != null) {
+          product.id = id;
+          allSweetProducts?.add(product);
+          notifyListeners();
+          productNameController.clear();
+          productDescriptionController.clear();
+          productPriceController.clear();
+          imageFile = null;
+          notifyListeners();
+          AppRouter.appRouter
+              .showCustomDialog('Success', 'Your Product has been added');
+          // log(catId);
+          // AppRouter.appRouter.goToWidget(AllProductsScreen(catId));
+        }
+      }
+    } else {
+      AppRouter.appRouter
+          .showCustomDialog('Error', 'You have to pick image first');
+    }
+  }
+
+  List<Product>? allBeverageProducts;
+  List<Product>? allSnackProducts;
+  List<Product>? allBakeryProducts;
+  List<Product>? allFishProducts;
+  List<Product>? allCoffeeProducts;
+  List<Product>? allSweetProducts;
+
+  getAllProducts() async {
+    getAllBeverageProducts();
+    getAllSnacksProducts();
+    getAllBakeryProducts();
+    getAllFishProducts();
+    getAllCoffeeProducts();
+    getAllSweetProducts();
+  }
+
+  getAllBeverageProducts() async {
     // log('234567898765432345');
-    allProducts = null;
+    allBeverageProducts = null;
     notifyListeners();
     // log(catId);
     List<Product>? products =
-        await FirestoreHelper.firestoreHelper.getAllProducts(catId);
+        await FirestoreHelper.firestoreHelper.getAllBeverageProducts();
 
-    allProducts = products;
+    allBeverageProducts = products;
+    notifyListeners();
+  }
+
+  getAllSnacksProducts() async {
+    // log('234567898765432345');
+    allSnackProducts = null;
+    notifyListeners();
+    // log(catId);
+    List<Product>? products =
+        await FirestoreHelper.firestoreHelper.getAllBabyCareProducts();
+
+    allSnackProducts = products;
+    notifyListeners();
+  }
+
+  getAllBakeryProducts() async {
+    // log('234567898765432345');
+    allBakeryProducts = null;
+    notifyListeners();
+    // log(catId);
+    List<Product>? products =
+        await FirestoreHelper.firestoreHelper.getAllBakeryProducts();
+
+    allBakeryProducts = products;
+    notifyListeners();
+  }
+
+  getAllFishProducts() async {
+    // log('234567898765432345');
+    allFishProducts = null;
+    notifyListeners();
+    // log(catId);
+    List<Product>? products =
+        await FirestoreHelper.firestoreHelper.getAllfishProducts();
+
+    allFishProducts = products;
+    notifyListeners();
+  }
+
+  getAllCoffeeProducts() async {
+    // log('234567898765432345');
+    allCoffeeProducts = null;
+    notifyListeners();
+    // log(catId);
+    List<Product>? products =
+        await FirestoreHelper.firestoreHelper.getAllCoffeeProducts();
+
+    allCoffeeProducts = products;
+    notifyListeners();
+  }
+
+  getAllSweetProducts() async {
+    // log('234567898765432345');
+    allSweetProducts = null;
+    notifyListeners();
+    // log(catId);
+    List<Product>? products =
+        await FirestoreHelper.firestoreHelper.getAllSweetProducts();
+
+    allSweetProducts = products;
     notifyListeners();
   }
 }

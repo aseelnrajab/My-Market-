@@ -48,12 +48,7 @@ class Profile extends StatelessWidget {
                       height: 130,
                       decoration: BoxDecoration(
                         border: Border.all(width: 4, color: Colors.white),
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //       spreadRadius: 2,
-                        //       blurRadius: 10,
-                        //       color: Colors.green.withOpacity(0.1))
-                        // ],
+
                         shape: BoxShape.circle,
                         image: const DecorationImage(
                             fit: BoxFit.cover,

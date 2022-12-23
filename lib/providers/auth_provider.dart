@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -63,7 +62,7 @@ class AuthProvider with ChangeNotifier {
           .signIn(loginEmailController.text, passwordLoginController.text);
       if (userId != null) {
         loggedUser =
-        await FirestoreHelper.firestoreHelper.getUserFromFirestore(userId);
+            await FirestoreHelper.firestoreHelper.getUserFromFirestore(userId);
         notifyListeners();
         AppRouter.appRouter.goToWidgetAndReplace(MainScreen());
       }
@@ -83,6 +82,20 @@ class AuthProvider with ChangeNotifier {
             phoneNumber: phoneNumEditingController.text));
         AppRouter.appRouter.goToWidgetAndReplace(MainScreen());
       }
+    }
+  }
+
+  updateUser() async {
+    log('Arrived!');
+    if (editKey.currentState!.validate()) {
+      editKey.currentState!.save();
+      String? userId = AuthHelper.authHelper.checkUser();
+      FirestoreHelper.firestoreHelper.updateTheUser(AppUser(
+          id: userId,
+          email: registerEmailController.text,
+          userName: userNameController.text,
+          phoneNumber: phoneNumEditingController.text));
+      AppRouter.appRouter.goToWidgetAndReplace(MainScreen());
     }
   }
 
@@ -110,27 +123,14 @@ class AuthProvider with ChangeNotifier {
 
   uploadNewFile() async {
     XFile? pickedFile =
-    await ImagePicker().pickImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     File file = File(pickedFile!.path);
     String imageUrl =
-    await StorageHelper.storageHelper.uploadNewImage('user_images', file);
+        await StorageHelper.storageHelper.uploadNewImage('user_images', file);
 
     loggedUser!.imageUrl = imageUrl;
 
     await FirestoreHelper.firestoreHelper.updateTheUser(loggedUser!);
     getUser(loggedUser!.id!);
   }
-  // updateUser()async{
-  //   if (editKey.currentState!.validate()) {
-  //     editKey.currentState!.save();
-  //     String? userId = await AuthHelper.authHelper
-  //         .(loginEmailController.text, passwordLoginController.text);
-  //     if (userId != null) {
-  //       loggedUser =
-  //           await FirestoreHelper.firestoreHelper.getUserFromFirestore(userId);
-  //       notifyListeners();
-  //       AppRouter.appRouter.goToWidgetAndReplace(MainScreen());
-  //     }
-  //   }
-  // }
-  }
+}

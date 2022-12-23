@@ -50,4 +50,9 @@ class AuthHelper {
 
     return user?.uid;
   }
+
+  // String? updateUser() {
+  //   User? currentUser = _firebaseAuth.currentUser;
+  //   currentUser?.updateDisplayName();
+  // }
 }

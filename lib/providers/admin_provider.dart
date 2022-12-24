@@ -741,10 +741,10 @@ class AdminProvider extends ChangeNotifier {
       CartProducts?.add(product);
       notifyListeners();
       AppRouter.appRouter
-          .showCustomDialog('Success', 'Your category has been added');
+          .showCustomDialog('Success', 'Your product has been added to cart');
     } else {
       AppRouter.appRouter
-          .showCustomDialog('Error', 'You have to pick image first');
+          .showCustomDialog('Error', 'You have to try again');
     }
   }
 

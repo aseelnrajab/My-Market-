@@ -21,7 +21,7 @@ class SignUpScreen extends StatelessWidget {
           child: Consumer<AuthProvider>(builder: ((context, provider, x) {
             return Form(
                 key: provider.signUpKey,
-                child: Expanded(
+                child: SingleChildScrollView(
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -36,9 +36,8 @@ class SignUpScreen extends StatelessWidget {
                             color: Colors.black,
                             letterSpacing: 1),
                       ),
-                      Expanded(
-                          child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal:0),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(40),
                           // color: Colors.black12,
@@ -47,6 +46,9 @@ class SignUpScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
+                            const SizedBox(
+                              height: 50,
+                            ),
                             const Text(
                               'Your Name',
                               style: TextStyle(fontWeight: FontWeight.bold),
@@ -126,7 +128,7 @@ class SignUpScreen extends StatelessWidget {
                                     backgroundColor: Colors.green,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(30))),
+                                            BorderRadius.circular(30))),
                                 onPressed: () {
                                   provider.signUp();
                                 },
@@ -144,7 +146,7 @@ class SignUpScreen extends StatelessWidget {
                                     backgroundColor: Colors.green,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(30))),
+                                            BorderRadius.circular(30))),
                                 onPressed: () {
                                   AppRouter.appRouter
                                       .goToWidgetAndReplace(SignInScreen());
@@ -155,7 +157,7 @@ class SignUpScreen extends StatelessWidget {
                                 )),
                           ],
                         ),
-                      ))
+                      )
                     ])));
           })),
         ));

@@ -21,7 +21,7 @@ class SignInScreen extends StatelessWidget {
           child: Consumer<AuthProvider>(builder: ((context, provider, x) {
             return Form(
                 key: provider.signInKey,
-                child: Expanded(
+                child: SingleChildScrollView(
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -44,84 +44,82 @@ class SignInScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 13),
                         ),
                        const SizedBox(height: 40,),
-                        Expanded(
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                              const SizedBox(height: 40,),
-                                const Text(
-                                  'Your email address',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                CustomTextfield(
-                                  textInputType: TextInputType.emailAddress,
-                                  controller: provider.loginEmailController,
-                                  validation: provider.emailValidation,
-                                  icon: Icons.person,
-                                  label: 'example@gmail.com',
-                                  // saveFun: provider.saveEmail,
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                const Text(
-                                  'Your Password',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                CustomTextfield(
-                                  textInputType: TextInputType.visiblePassword,
-                                  controller: provider.passwordLoginController,
-                                  validation: provider.passwordValidation,
-                                  label: 'password',
-                                  icon: Icons.lock,
-                                  isPassword: true,
-                                  // saveFun: provider.savePassword)
-                                ),
-                                const SizedBox(
-                                  height: 60,
-                                ),
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 20.0, vertical: 10.0),
-                                        backgroundColor:
-                                           Colors.green,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30))),
-                                    onPressed: () {
-                                      provider.signIn();
-                                    },
-                                    child: const Text(
-                                      'Sign In',
-                                      style: TextStyle(color: Colors.black),
-                                    )),
-                               const SizedBox(height: 10,),
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 20.0, vertical: 10.0),
-                                        backgroundColor: Colors.green,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(30))),
-                                    onPressed: () {
-                                      AppRouter.appRouter
-                                          .goToWidgetAndReplace(SignUpScreen());
-                                    },
-                                    child: const Text(
-                                      'Go to Sign Up Screen',
-                                      style: TextStyle(color: Colors.black),
-                                    )),
-                              ]),
-                        ),
+                        Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                            const SizedBox(height: 40,),
+                              const Text(
+                                'Your email address',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              CustomTextfield(
+                                textInputType: TextInputType.emailAddress,
+                                controller: provider.loginEmailController,
+                                validation: provider.emailValidation,
+                                icon: Icons.person,
+                                label: 'example@gmail.com',
+                                // saveFun: provider.saveEmail,
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text(
+                                'Your Password',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              CustomTextfield(
+                                textInputType: TextInputType.visiblePassword,
+                                controller: provider.passwordLoginController,
+                                validation: provider.passwordValidation,
+                                label: 'password',
+                                icon: Icons.lock,
+                                isPassword: true,
+                                // saveFun: provider.savePassword)
+                              ),
+                              const SizedBox(
+                                height: 60,
+                              ),
+                              ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20.0, vertical: 10.0),
+                                      backgroundColor:
+                                         Colors.green,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30))),
+                                  onPressed: () {
+                                    provider.signIn();
+                                  },
+                                  child: const Text(
+                                    'Sign In',
+                                    style: TextStyle(color: Colors.black),
+                                  )),
+                             const SizedBox(height: 10,),
+                              ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20.0, vertical: 10.0),
+                                      backgroundColor: Colors.green,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(30))),
+                                  onPressed: () {
+                                    AppRouter.appRouter
+                                        .goToWidgetAndReplace(SignUpScreen());
+                                  },
+                                  child: const Text(
+                                    'Go to Sign Up Screen',
+                                    style: TextStyle(color: Colors.black),
+                                  )),
+                            ]),
 
 
 

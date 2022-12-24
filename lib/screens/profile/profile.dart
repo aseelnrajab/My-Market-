@@ -26,15 +26,16 @@ class Profile extends StatelessWidget {
                 },
                 child: const Icon(Icons.logout)),
             backgroundColor: Colors.green,
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    provider.scaffoldKey.currentState?.openDrawer();
-                  },
-                  icon: const Icon(
-                    Icons.menu,
-                  ))
-            ]),
+            // actions: [
+            //   IconButton(
+            //       onPressed: () {
+            //         provider.scaffoldKey.currentState?.openDrawer();
+            //       },
+            //       icon: const Icon(
+            //         Icons.menu,
+            //       ))
+            // ]
+        ),
         body: Container(
             padding: const EdgeInsets.only(left: 40, right: 40, bottom: 50),
             color: Colors.grey.shade100,

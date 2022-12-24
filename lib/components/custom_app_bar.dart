@@ -20,15 +20,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             },
             child: const Icon(Icons.keyboard_backspace_rounded)),
         backgroundColor: Colors.green,
-        actions: [
-          IconButton(
-              onPressed: () {
-                provider.scaffoldKey.currentState?.openDrawer();
-              },
-              icon: const Icon(
-                Icons.menu,
-              ))
-        ]);
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         provider.scaffoldKey.currentState?.openDrawer();
+        //       },
+        //       icon: const Icon(
+        //         Icons.menu,
+        //       ))
+        // ]
+    );
 
   }
 

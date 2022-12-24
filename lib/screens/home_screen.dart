@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
             actions: [
               IconButton(
                   onPressed: () {
-                    AppRouter.appRouter.goToWidget(const Cart());
+                    AppRouter.appRouter.goToWidget(Cart());
                   },
                   icon: const Icon(
                     Icons.shopping_cart,

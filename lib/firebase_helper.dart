@@ -21,7 +21,7 @@ class FirestoreHelper {
   //login
   Future<AppUser> getUserFromFirestore(String id) async {
     DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
-        await firestore.collection('users').doc(id).get();
+    await firestore.collection('users').doc(id).get();
     Map<String, dynamic>? data = documentSnapshot.data();
     AppUser appUser = AppUser.fromMap(data!);
     return appUser;
@@ -35,7 +35,7 @@ class FirestoreHelper {
   Future<String?> addNewBeverage(Category category) async {
     try {
       DocumentReference<Map<String, dynamic>> categoryDocument =
-          await firestore.collection('beverage_category').add(category.toMap());
+      await firestore.collection('beverage_category').add(category.toMap());
 
       return categoryDocument.id;
     } on Exception catch (e) {
@@ -46,7 +46,7 @@ class FirestoreHelper {
   Future<List<Category>?> getAllBeverages() async {
     try {
       QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-          await firestore.collection('beverage_category').get();
+      await firestore.collection('beverage_category').get();
       List<Category> categories = catsSnapshot.docs.map((doc) {
         Category category = Category.fromMap(doc.data());
         category.id = doc.id;
@@ -85,11 +85,11 @@ class FirestoreHelper {
   Future<String?> addNewProduct(Product product) async {
     try {
       DocumentReference<Map<String, dynamic>> documentReference =
-          await firestore
-              .collection('beverage_category')
-              .doc(product.catId)
-              .collection('products')
-              .add(product.toMap());
+      await firestore
+          .collection('beverage_category')
+          .doc(product.catId)
+          .collection('products')
+          .add(product.toMap());
       return documentReference.id;
     } on Exception catch (e) {
       log(e.toString());
@@ -99,7 +99,7 @@ class FirestoreHelper {
   Future<List<Product>?> getAllBeverageProducts() async {
     // log('wsdefrytjkjlkhghfg');
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await firestore.collection('beverage_category').get();
+    await firestore.collection('beverage_category').get();
     return querySnapshot.docs.map((e) {
       Product product = Product.fromMap(e.data());
       product.id = e.id;
@@ -123,7 +123,7 @@ class FirestoreHelper {
   Future<List<Category>?> getAllBabyCares() async {
     try {
       QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-          await firestore.collection('baby_care_category').get();
+      await firestore.collection('baby_care_category').get();
       List<Category> categories = catsSnapshot.docs.map((doc) {
         Category category = Category.fromMap(doc.data());
         category.id = doc.id;
@@ -138,7 +138,7 @@ class FirestoreHelper {
   Future<List<Product>?> getAllBabyCareProducts() async {
     // log('wsdefrytjkjlkhghfg');
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await firestore.collection('baby_care_category').get();
+    await firestore.collection('baby_care_category').get();
     return querySnapshot.docs.map((e) {
       Product product = Product.fromMap(e.data());
       product.id = e.id;
@@ -173,7 +173,7 @@ class FirestoreHelper {
   Future<String?> addNewBakery(Category category) async {
     try {
       DocumentReference<Map<String, dynamic>> categoryDocument =
-          await firestore.collection('bakery_category').add(category.toMap());
+      await firestore.collection('bakery_category').add(category.toMap());
 
       return categoryDocument.id;
     } on Exception catch (e) {
@@ -184,7 +184,7 @@ class FirestoreHelper {
   Future<List<Category>?> getAllBakeries() async {
     try {
       QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-          await firestore.collection('bakery_category').get();
+      await firestore.collection('bakery_category').get();
       List<Category> categories = catsSnapshot.docs.map((doc) {
         Category category = Category.fromMap(doc.data());
         category.id = doc.id;
@@ -199,7 +199,7 @@ class FirestoreHelper {
   Future<List<Product>?> getAllBakeryProducts() async {
     // log('wsdefrytjkjlkhghfg');
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await firestore.collection('bakery_category').get();
+    await firestore.collection('bakery_category').get();
     return querySnapshot.docs.map((e) {
       Product product = Product.fromMap(e.data());
       product.id = e.id;
@@ -234,7 +234,7 @@ class FirestoreHelper {
   Future<String?> addNewFish(Category category) async {
     try {
       DocumentReference<Map<String, dynamic>> categoryDocument =
-          await firestore.collection('fish_category').add(category.toMap());
+      await firestore.collection('fish_category').add(category.toMap());
 
       return categoryDocument.id;
     } on Exception catch (e) {
@@ -245,7 +245,7 @@ class FirestoreHelper {
   Future<List<Category>?> getAllFishes() async {
     try {
       QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-          await firestore.collection('fish_category').get();
+      await firestore.collection('fish_category').get();
       List<Category> categories = catsSnapshot.docs.map((doc) {
         Category category = Category.fromMap(doc.data());
         category.id = doc.id;
@@ -260,7 +260,7 @@ class FirestoreHelper {
   Future<List<Product>?> getAllfishProducts() async {
     // log('wsdefrytjkjlkhghfg');
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await firestore.collection('fish_category').get();
+    await firestore.collection('fish_category').get();
     return querySnapshot.docs.map((e) {
       Product product = Product.fromMap(e.data());
       product.id = e.id;
@@ -295,7 +295,7 @@ class FirestoreHelper {
   Future<String?> addNewCoffee(Category category) async {
     try {
       DocumentReference<Map<String, dynamic>> categoryDocument =
-          await firestore.collection('coffee_category').add(category.toMap());
+      await firestore.collection('coffee_category').add(category.toMap());
 
       return categoryDocument.id;
     } on Exception catch (e) {
@@ -306,7 +306,7 @@ class FirestoreHelper {
   Future<List<Category>?> getAllCoffees() async {
     try {
       QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-          await firestore.collection('coffee_category').get();
+      await firestore.collection('coffee_category').get();
       List<Category> categories = catsSnapshot.docs.map((doc) {
         Category category = Category.fromMap(doc.data());
         category.id = doc.id;
@@ -321,7 +321,7 @@ class FirestoreHelper {
   Future<List<Product>?> getAllCoffeeProducts() async {
     // log('wsdefrytjkjlkhghfg');
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await firestore.collection('coffee_category').get();
+    await firestore.collection('coffee_category').get();
     return querySnapshot.docs.map((e) {
       Product product = Product.fromMap(e.data());
       product.id = e.id;
@@ -356,7 +356,7 @@ class FirestoreHelper {
   Future<String?> addNewSweet(Category category) async {
     try {
       DocumentReference<Map<String, dynamic>> categoryDocument =
-          await firestore.collection('sweet_category').add(category.toMap());
+      await firestore.collection('sweet_category').add(category.toMap());
 
       return categoryDocument.id;
     } on Exception catch (e) {
@@ -367,7 +367,7 @@ class FirestoreHelper {
   Future<List<Category>?> getAllSweets() async {
     try {
       QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-          await firestore.collection('sweet_category').get();
+      await firestore.collection('sweet_category').get();
       List<Category> categories = catsSnapshot.docs.map((doc) {
         Category category = Category.fromMap(doc.data());
         category.id = doc.id;
@@ -382,7 +382,7 @@ class FirestoreHelper {
   Future<List<Product>?> getAllSweetProducts() async {
     // log('wsdefrytjkjlkhghfg');
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await firestore.collection('sweet_category').get();
+    await firestore.collection('sweet_category').get();
     return querySnapshot.docs.map((e) {
       Product product = Product.fromMap(e.data());
       product.id = e.id;
@@ -417,7 +417,7 @@ class FirestoreHelper {
   Future<String?> addNewOffer(OffersMenu offersMenu) async {
     try {
       DocumentReference<Map<String, dynamic>> categoryDocument =
-          await firestore.collection('offer').add(offersMenu.toMap());
+      await firestore.collection('offer').add(offersMenu.toMap());
 
       return categoryDocument.id;
     } on Exception catch (e) {
@@ -428,7 +428,7 @@ class FirestoreHelper {
   Future<List<OffersMenu>?> getAllOffer() async {
     try {
       QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-          await firestore.collection('offer').get();
+      await firestore.collection('offer').get();
       List<OffersMenu> offersMenu = catsSnapshot.docs.map((doc) {
         OffersMenu offersMenu = OffersMenu.fromMap(doc.data());
         offersMenu.id = doc.id;
@@ -480,7 +480,7 @@ class FirestoreHelper {
   Future<String?> addToCart(Product product) async {
     try {
       DocumentReference<Map<String, dynamic>> categoryDocument =
-          await firestore.collection('cart').add(product.toMap());
+      await firestore.collection('cart').add(product.toMap());
       return categoryDocument.id;
     } on Exception catch (e) {
       log(e.toString());
@@ -490,7 +490,7 @@ class FirestoreHelper {
   Future<List<Product>?> getCartProducts() async {
     try {
       QuerySnapshot<Map<String, dynamic>> catsSnapshot =
-          await firestore.collection('cart').get();
+      await firestore.collection('cart').get();
       List<Product> products = catsSnapshot.docs.map((doc) {
         Product product = Product.fromMap(doc.data());
         product.id = doc.id;
@@ -510,5 +510,61 @@ class FirestoreHelper {
       log(e.toString());
       return false;
     }
-  }
-}
+  }}
+
+  //
+  // addToPayment(Product product) async {
+  //   try {
+  //     DocumentReference<Map<String, dynamic>> paymentDocument =
+  //     await firestore.collection('payment').add(product.toMap());
+  //     return paymentDocument.id;
+  //   } on Exception catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
+
+//   Future<double> calculatePayment() async {
+//     double price = 0;
+//
+//     QuerySnapshot<Map<String, dynamic>> catsSnapshot =
+//     await firestore.collection('cart').get();
+//     List<Product> products =
+//
+//
+//     return price;
+//
+//   }
+// }
+
+
+//
+// try {
+//   QuerySnapshot<Map<String, dynamic>> catsSnapshot =
+//   await firestore.collection('cart').get();
+//   List<Product> products = catsSnapshot.docs.map((doc) {
+//     Product product = Product.fromMap(doc.data());
+//     product.id = doc.id;
+//     return product;
+//   }).toList();
+//   return products;
+// } on Exception catch (e) {
+//   log(e.toString());
+// }
+
+
+// calculateTotalPrice() async {
+//   try {
+//     QuerySnapshot<Map<String, dynamic>> paySnapshot =
+//         await firestore.collection('payment').get();
+//     List<Product> products = paySnapshot.docs.map((doc) {
+//       Product product = Product.fromMap(doc.data());
+//       product.id = doc.id;
+//       return product;
+//     }).toList();
+//     return products;
+//   } on Exception catch (e) {
+//     log(e.toString());
+//   }
+// }
+
+

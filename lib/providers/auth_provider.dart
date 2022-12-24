@@ -17,6 +17,16 @@ class AuthProvider with ChangeNotifier {
   GlobalKey<FormState> signInKey = GlobalKey();
   GlobalKey<FormState> signUpKey = GlobalKey();
   GlobalKey<FormState> editKey = GlobalKey();
+
+
+  GlobalKey<FormState> paymentKey = GlobalKey();
+  TextEditingController carIDController = TextEditingController();
+  TextEditingController nameOnCardController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+
+
+
   TextEditingController userNameController = TextEditingController();
   TextEditingController phoneNumEditingController = TextEditingController();
   TextEditingController registerEmailController = TextEditingController();

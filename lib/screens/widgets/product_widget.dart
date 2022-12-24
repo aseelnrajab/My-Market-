@@ -63,7 +63,7 @@ class ProductWidget extends StatelessWidget {
               ],
             ),
             Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               child: Row(
                   // crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -71,15 +71,24 @@ class ProductWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Product Name' + ': ' + product.name,
+                          product.name,
                         ),
-                        Text(
-                          'Product Price' + ': ' + product.price,
+                        Row(
+                          children: [
+                            Text(
+                              'Price' + ': ' + product.price,
+                              style: const TextStyle(color: Colors.red),
+                            ),
+                            const Text(
+                              '\$',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                     const SizedBox(
-                      width: 90,
+                      width: 100,
                     ),
                     Column(children: [
                       ElevatedButton(

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
@@ -648,6 +647,7 @@ class AdminProvider extends ChangeNotifier {
   List<Product>? allCoffeeProducts;
   List<Product>? allSweetProducts;
   List<Product>? CartProducts;
+  List<Product>? payment;
 
   getAllProducts() async {
     getAllBeverageProducts();
@@ -743,8 +743,7 @@ class AdminProvider extends ChangeNotifier {
       AppRouter.appRouter
           .showCustomDialog('Success', 'Your product has been added to cart');
     } else {
-      AppRouter.appRouter
-          .showCustomDialog('Error', 'You have to try again');
+      AppRouter.appRouter.showCustomDialog('Error', 'You have to try again');
     }
   }
 
@@ -758,6 +757,38 @@ class AdminProvider extends ChangeNotifier {
     }
     AppRouter.appRouter.hideDialoug();
   }
+
+// addToPayment(Product product) async {
+//   // add product to payment process
+//   AppRouter.appRouter.showLoadingDialoug();
+//   String? id = await FirestoreHelper.firestoreHelper.addToPayment(product);
+//
+//   AppRouter.appRouter.hideDialoug();
+//   if (id != null) {
+//     product.id = id;
+//     payment?.add(product);
+//     notifyListeners();
+//     AppRouter.appRouter.showCustomDialog(
+//         'Success', 'Your product has been added to payment ');
+//   } else {
+//     AppRouter.appRouter.showCustomDialog('Error', 'You have to try again');
+//   }
+// }
+
+// Future<int>
+// Future<double> getAllPaymentAnCalculate() async {
+//   double price=
+//       await FirestoreHelper.firestoreHelper.calculatePayment();
+//   notifyListeners();
+//   return price;
+
+//
+// int? length = payment?.length;
+//
+// for (int i = 0; i < length!; i++) {
+//   totalPrice += payment![i].price as int;
+// }
+// return totalPrice;
 }
 
 // deleteProduct(String? productId) async {

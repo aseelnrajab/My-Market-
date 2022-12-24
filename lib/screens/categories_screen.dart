@@ -13,6 +13,7 @@ import 'add/category/display/all_snack_categories.dart';
 import 'add/category/display/bakery.dart';
 import 'add/category/display/coffee.dart';
 import 'add/category/display/sweet.dart';
+import 'cart.dart';
 import 'login_screen.dart';
 
 class AllCategories extends StatelessWidget {
@@ -33,18 +34,18 @@ class AllCategories extends StatelessWidget {
             title: const Text('Categories'),
             leading: InkWell(
                 onTap: () {
-                  Navigator.of(context).pop();
+                  Provider.of<AuthProvider>(context, listen: false).signOut();
+                  AppRouter.appRouter.goToWidget(SignInScreen());
                 },
-                child: const Icon(Icons.keyboard_backspace_sharp)),
+                child: const Icon(Icons.logout)),
             backgroundColor: Colors.green,
             actions: [
               IconButton(
                   onPressed: () {
-                    Provider.of<AuthProvider>(context, listen: false).signOut();
-                    AppRouter.appRouter.goToWidget(SignInScreen());
+                    AppRouter.appRouter.goToWidget(Cart());
                   },
                   icon: const Icon(
-                    Icons.logout,
+                    Icons.shopping_cart,
                   ))
             ]),
         body: Container(

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../Routers/app_router.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/bottom_navigation_bar_provider.dart';
+import '../cart.dart';
 import 'edit_profile.dart';
 import '../login_screen.dart';
 
@@ -16,15 +17,23 @@ class Profile extends StatelessWidget {
     var provider1 = Provider.of<AuthProvider>(context);
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Profile'),
-          leading: InkWell(
-              onTap: () {
-                provider1.signOut();
-                AppRouter.appRouter.goToWidget(SignInScreen());
-              },
-              child: const Icon(Icons.logout)),
-          backgroundColor: Colors.green,
-        ),
+            title: const Text('Profile'),
+            leading: InkWell(
+                onTap: () {
+                  provider1.signOut();
+                  AppRouter.appRouter.goToWidget(SignInScreen());
+                },
+                child: const Icon(Icons.logout)),
+            backgroundColor: Colors.green,
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    AppRouter.appRouter.goToWidget(Cart());
+                  },
+                  icon: const Icon(
+                    Icons.shopping_cart,
+                  ))
+            ]),
         body: Container(
             padding: const EdgeInsets.only(left: 40, right: 40, bottom: 50),
             color: Colors.grey.shade100,

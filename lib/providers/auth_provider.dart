@@ -18,14 +18,11 @@ class AuthProvider with ChangeNotifier {
   GlobalKey<FormState> signUpKey = GlobalKey();
   GlobalKey<FormState> editKey = GlobalKey();
 
-
   GlobalKey<FormState> paymentKey = GlobalKey();
   TextEditingController carIDController = TextEditingController();
   TextEditingController nameOnCardController = TextEditingController();
   TextEditingController passController = TextEditingController();
   TextEditingController dateController = TextEditingController();
-
-
 
   TextEditingController userNameController = TextEditingController();
   TextEditingController phoneNumEditingController = TextEditingController();
@@ -90,7 +87,12 @@ class AuthProvider with ChangeNotifier {
             email: registerEmailController.text,
             userName: userNameController.text,
             phoneNumber: phoneNumEditingController.text));
-        AppRouter.appRouter.goToWidgetAndReplace(MainScreen());
+        AppRouter.appRouter
+            .showCustomDialog('You Are Registered!', 'You can Login Now!');
+        AppRouter.appRouter.goToWidgetAndReplace(SignInScreen());
+      } else {
+        AppRouter.appRouter
+            .showCustomDialog('Error in Registration!', 'Try Again!');
       }
     }
   }
@@ -144,7 +146,7 @@ class AuthProvider with ChangeNotifier {
     getUser(loggedUser!.id!);
   }
 
-  // addToCart()async{
-  //
-  // }
+// addToCart()async{
+//
+// }
 }

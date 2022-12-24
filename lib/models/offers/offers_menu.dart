@@ -1,26 +1,23 @@
 import 'dart:convert';
+
 class OffersMenu {
-   final String imageUrl;
-   String? id;
+  String imageUrl;
+  String? id;
 
-   OffersMenu({required this.imageUrl,this.id});
+  OffersMenu({required this.imageUrl, this.id});
 
-   Map<String, dynamic> toMap() {
-     return {
-       'imageUrl': imageUrl,
-     };
-   }
+  Map<String, dynamic> toMap() {
+    return {
+      'imageUrl': imageUrl,
+    };
+  }
 
-   factory OffersMenu.fromMap(Map<String, dynamic> map) {
-     return OffersMenu(
-         imageUrl: map['imageUrl'] ?? '',
-         id: map['id'] ?? ' ');
-   }
+  factory OffersMenu.fromMap(Map<String, dynamic> map) {
+    return OffersMenu(imageUrl: map['imageUrl'] ?? '', id: map['id'] ?? ' ');
+  }
 
-   String toJson() => json.encode(toMap());
+  String toJson() => json.encode(toMap());
 
-   factory OffersMenu.fromJson(String source) =>
-       OffersMenu.fromMap(json.decode(source));
+  factory OffersMenu.fromJson(String source) =>
+      OffersMenu.fromMap(json.decode(source));
 }
-
-

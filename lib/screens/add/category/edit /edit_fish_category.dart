@@ -15,6 +15,8 @@ class EditFishCategory extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
+
         title: const Text("Update Fish Category"),
       ),
       body: Consumer<AdminProvider>(builder: (context, provider, w) {
@@ -23,6 +25,8 @@ class EditFishCategory extends StatelessWidget {
           child: Form(
             key: provider.fishesCategoryFormKey,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+
               children: [
                 const SizedBox(
                   height: 30,
@@ -54,10 +58,19 @@ class EditFishCategory extends StatelessWidget {
                   label: 'Category name',
                   validation: provider.requiredValidation,
                 ),
+                const SizedBox(height: 30,),
+
                 SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 10.0),
+                        backgroundColor: Colors.green,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(30))),
                     onPressed: () {
                       provider.updateFishCategory(category);
                     },

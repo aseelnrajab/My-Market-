@@ -5,6 +5,7 @@ import 'package:social_app2/providers/admin_provider.dart';
 import 'package:social_app2/providers/auth_provider.dart';
 import 'package:social_app2/providers/bottom_navigation_bar_provider.dart';
 import 'package:social_app2/screens/register_screen.dart';
+import 'package:social_app2/screens/splash_screen.dart';
 
 import 'Routers/app_router.dart';
 import 'firebase_options.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: AppRouter.appRouter.navigaterkey,
         debugShowCheckedModeBanner: false,
-        home: SignUpScreen(),
+        home: SplachScreen(),
       ),
     );
   }

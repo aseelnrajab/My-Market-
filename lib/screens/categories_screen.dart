@@ -33,18 +33,18 @@ class AllCategories extends StatelessWidget {
             title: const Text('Categories'),
             leading: InkWell(
                 onTap: () {
-                  Provider.of<AuthProvider>(context, listen: false).signOut();
-                  AppRouter.appRouter.goToWidget(SignInScreen());
+                  Navigator.of(context).pop();
                 },
-                child: const Icon(Icons.logout)),
+                child: const Icon(Icons.keyboard_backspace_sharp)),
             backgroundColor: Colors.green,
             actions: [
               IconButton(
                   onPressed: () {
-                    provider.scaffoldKey.currentState?.openDrawer();
+                    Provider.of<AuthProvider>(context, listen: false).signOut();
+                    AppRouter.appRouter.goToWidget(SignInScreen());
                   },
                   icon: const Icon(
-                    Icons.menu,
+                    Icons.logout,
                   ))
             ]),
         body: Container(

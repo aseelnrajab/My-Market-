@@ -10,7 +10,8 @@ class OfferModel extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      width: 400,
+      width: 420,
+
       decoration:const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Image.network(

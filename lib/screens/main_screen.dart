@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:social_app2/providers/auth_provider.dart';
 
 import 'package:social_app2/screens/home_screen.dart';
 import 'package:social_app2/screens/profile/profile.dart';

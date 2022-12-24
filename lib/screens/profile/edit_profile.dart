@@ -87,7 +87,7 @@ class EditProfile extends StatelessWidget {
                           },
                           child: const Text(
                             'Update your information',
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(color: Colors.white,letterSpacing: 1, fontSize: 15),
                           )),
                     ],
                   ));

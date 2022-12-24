@@ -89,7 +89,9 @@ class ProductWidget extends StatelessWidget {
                               backgroundColor: Colors.green,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30))),
-                          onPressed: () {},
+                          onPressed: () {
+                            provider.addToCart(product);
+                          },
                           child: const Text('Add to Cart')),
                     ])
                   ]),

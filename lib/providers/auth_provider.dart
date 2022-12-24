@@ -133,4 +133,8 @@ class AuthProvider with ChangeNotifier {
     await FirestoreHelper.firestoreHelper.updateTheUser(loggedUser!);
     getUser(loggedUser!.id!);
   }
+
+  // addToCart()async{
+  //
+  // }
 }

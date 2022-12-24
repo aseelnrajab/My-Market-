@@ -51,6 +51,7 @@ class AdminProvider extends ChangeNotifier {
     allCoffee = await FirestoreHelper.firestoreHelper.getAllCoffees();
     allSweets = await FirestoreHelper.firestoreHelper.getAllSweets();
     allOffers = await FirestoreHelper.firestoreHelper.getAllOffer();
+    CartProducts = await FirestoreHelper.firestoreHelper.getCartProducts();
 
     notifyListeners();
   }
@@ -646,6 +647,7 @@ class AdminProvider extends ChangeNotifier {
   List<Product>? allFishProducts;
   List<Product>? allCoffeeProducts;
   List<Product>? allSweetProducts;
+  List<Product>? CartProducts;
 
   getAllProducts() async {
     getAllBeverageProducts();
@@ -728,17 +730,44 @@ class AdminProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  addToCart(Product product) async {
+    // add product to cart process
+    AppRouter.appRouter.showLoadingDialoug();
+    String? id = await FirestoreHelper.firestoreHelper.addToCart(product);
 
+    AppRouter.appRouter.hideDialoug();
+    if (id != null) {
+      product.id = id;
+      CartProducts?.add(product);
+      notifyListeners();
+      AppRouter.appRouter
+          .showCustomDialog('Success', 'Your category has been added');
+    } else {
+      AppRouter.appRouter
+          .showCustomDialog('Error', 'You have to pick image first');
+    }
+  }
 
-  // deleteProduct(String? productId) async {
-  //   log('Arrived');
-  //   AppRouter.appRouter.showLoadingDialoug();
-  //   bool deleteSuccess =
-  //       await FirestoreHelper.firestoreHelper.deleteBeverageProduct(productId);
-  //   if (deleteSuccess) {
-  //     allBeverageProducts!.remove(productId);
-  //     notifyListeners();
-  //   }
-  //   AppRouter.appRouter.hideDialoug();
-  // }
+  removeFromCart(Product product) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    bool deleteSuccess =
+        await FirestoreHelper.firestoreHelper.removeFromCart(product);
+    if (deleteSuccess) {
+      CartProducts!.remove(product);
+      notifyListeners();
+    }
+    AppRouter.appRouter.hideDialoug();
+  }
 }
+
+// deleteProduct(String? productId) async {
+//   log('Arrived');
+//   AppRouter.appRouter.showLoadingDialoug();
+//   bool deleteSuccess =
+//       await FirestoreHelper.firestoreHelper.deleteBeverageProduct(productId);
+//   if (deleteSuccess) {
+//     allBeverageProducts!.remove(productId);
+//     notifyListeners();
+//   }
+//   AppRouter.appRouter.hideDialoug();
+// }

@@ -476,4 +476,39 @@ class FirestoreHelper {
   //     return false;
   //   }
   // }
+
+  Future<String?> addToCart(Product product) async {
+    try {
+      DocumentReference<Map<String, dynamic>> categoryDocument =
+          await firestore.collection('cart').add(product.toMap());
+      return categoryDocument.id;
+    } on Exception catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<List<Product>?> getCartProducts() async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> catsSnapshot =
+          await firestore.collection('cart').get();
+      List<Product> products = catsSnapshot.docs.map((doc) {
+        Product product = Product.fromMap(doc.data());
+        product.id = doc.id;
+        return product;
+      }).toList();
+      return products;
+    } on Exception catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<bool> removeFromCart(Product product) async {
+    try {
+      await firestore.collection('cart').doc(product.id).delete();
+      return true;
+    } on Exception catch (e) {
+      log(e.toString());
+      return false;
+    }
+  }
 }

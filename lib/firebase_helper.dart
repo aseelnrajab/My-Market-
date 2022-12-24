@@ -134,10 +134,11 @@ class FirestoreHelper {
       log(e.toString());
     }
   }
+
   Future<List<Product>?> getAllBabyCareProducts() async {
     // log('wsdefrytjkjlkhghfg');
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-    await firestore.collection('baby_care_category').get();
+        await firestore.collection('baby_care_category').get();
     return querySnapshot.docs.map((e) {
       Product product = Product.fromMap(e.data());
       product.id = e.id;
@@ -195,19 +196,16 @@ class FirestoreHelper {
     }
   }
 
-
   Future<List<Product>?> getAllBakeryProducts() async {
     // log('wsdefrytjkjlkhghfg');
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-    await firestore.collection('bakery_category').get();
+        await firestore.collection('bakery_category').get();
     return querySnapshot.docs.map((e) {
       Product product = Product.fromMap(e.data());
       product.id = e.id;
       return product;
     }).toList();
   }
-
-
 
   Future<bool> deleteBakeries(String catId) async {
     try {
@@ -259,18 +257,16 @@ class FirestoreHelper {
     }
   }
 
-
   Future<List<Product>?> getAllfishProducts() async {
     // log('wsdefrytjkjlkhghfg');
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-    await firestore.collection('fish_category').get();
+        await firestore.collection('fish_category').get();
     return querySnapshot.docs.map((e) {
       Product product = Product.fromMap(e.data());
       product.id = e.id;
       return product;
     }).toList();
   }
-
 
   Future<bool> deleteFishes(String catId) async {
     try {
@@ -325,7 +321,7 @@ class FirestoreHelper {
   Future<List<Product>?> getAllCoffeeProducts() async {
     // log('wsdefrytjkjlkhghfg');
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-    await firestore.collection('coffee_category').get();
+        await firestore.collection('coffee_category').get();
     return querySnapshot.docs.map((e) {
       Product product = Product.fromMap(e.data());
       product.id = e.id;
@@ -382,10 +378,11 @@ class FirestoreHelper {
       log(e.toString());
     }
   }
+
   Future<List<Product>?> getAllSweetProducts() async {
     // log('wsdefrytjkjlkhghfg');
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-    await firestore.collection('sweet_category').get();
+        await firestore.collection('sweet_category').get();
     return querySnapshot.docs.map((e) {
       Product product = Product.fromMap(e.data());
       product.id = e.id;
@@ -465,4 +462,18 @@ class FirestoreHelper {
       return false;
     }
   }
+
+  // Future<bool> deleteBeverageProduct(String? productId) async {
+  //   try {
+  //     await firestore
+  //         .collection('beverage_category').doc()
+  //         .collection('products')
+  //         .doc(productId)
+  //         .delete();
+  //     return true;
+  //   } on Exception catch (e) {
+  //     log(e.toString());
+  //     return false;
+  //   }
+  // }
 }

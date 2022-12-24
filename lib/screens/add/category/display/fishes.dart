@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:social_app2/Routers/app_router.dart';
 import '../../../../components/custom_app_bar.dart';
 import '../../../../providers/admin_provider.dart';
+import '../../../widgets/Category/fish_category_widget.dart';
 import '../add/add_new_fishes.dart';
-import '../../../widgets/fish_category_widget.dart';
 
 class AllFishesCategoryScreen extends StatelessWidget {
   const AllFishesCategoryScreen({Key? key}) : super(key: key);

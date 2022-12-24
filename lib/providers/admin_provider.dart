@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
@@ -32,7 +33,6 @@ class AdminProvider extends ChangeNotifier {
   GlobalKey<FormState> coffeeCategoryFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> sweetCategoryFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> offerFormKey = GlobalKey<FormState>();
-
 
   File? imageFile;
   List<Category>? allBeverage;
@@ -288,17 +288,77 @@ class AdminProvider extends ChangeNotifier {
   }
 
 //////////////////////
-//   delete category
-//   deleteCategory(Category category) async {
-//     AppRouter.appRouter.showLoadingDialoug();
-//     bool deleteSuccess =
-//         await FirestoreHelper.firestoreHelper.deleteBeverage(category.id!);
-//     if (deleteSuccess) {
-//       allBeverage!.remove(category);
-//       notifyListeners();
-//     }
-//     AppRouter.appRouter.hideDialoug();
-//   }
+//   delete Beverage category
+  deleteBeverageCategory(Category category) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    bool deleteSuccess =
+        await FirestoreHelper.firestoreHelper.deleteBeverage(category.id!);
+    if (deleteSuccess) {
+      allBeverage!.remove(category);
+      notifyListeners();
+    }
+    AppRouter.appRouter.hideDialoug();
+  }
+
+  //   delete Coffee category
+  deleteCoffeeCategory(Category category) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    bool deleteSuccess =
+        await FirestoreHelper.firestoreHelper.deleteCoffee(category.id!);
+    if (deleteSuccess) {
+      allCoffee!.remove(category);
+      notifyListeners();
+    }
+    AppRouter.appRouter.hideDialoug();
+  }
+
+  //   delete Sweet category
+  deleteSweetCategory(Category category) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    bool deleteSuccess =
+        await FirestoreHelper.firestoreHelper.deleteSweet(category.id!);
+    if (deleteSuccess) {
+      allSweets!.remove(category);
+      notifyListeners();
+    }
+    AppRouter.appRouter.hideDialoug();
+  }
+
+  //   delete Bakeries category
+  deleteBakeryCategory(Category category) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    bool deleteSuccess =
+        await FirestoreHelper.firestoreHelper.deleteBakeries(category.id!);
+    if (deleteSuccess) {
+      allBakeries!.remove(category);
+      notifyListeners();
+    }
+    AppRouter.appRouter.hideDialoug();
+  }
+
+  //   delete Fish category
+  deleteFishCategory(Category category) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    bool deleteSuccess =
+        await FirestoreHelper.firestoreHelper.deleteFishes(category.id!);
+    if (deleteSuccess) {
+      allFishes!.remove(category);
+      notifyListeners();
+    }
+    AppRouter.appRouter.hideDialoug();
+  }
+
+  //   delete Snack category
+  deleteSnackCategory(Category category) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    bool deleteSuccess =
+        await FirestoreHelper.firestoreHelper.deleteBabyCare(category.id!);
+    if (deleteSuccess) {
+      allsnack!.remove(category);
+      notifyListeners();
+    }
+    AppRouter.appRouter.hideDialoug();
+  }
 
   // goToEditCategoryPage(Category category) {
   //   categoryNameController.text = category.name;
@@ -339,16 +399,12 @@ class AdminProvider extends ChangeNotifier {
   TextEditingController productPriceController = TextEditingController();
   TextEditingController productWeightController = TextEditingController();
 
-
   GlobalKey<FormState> addBeverageProductKey = GlobalKey();
   GlobalKey<FormState> addSnackProductKey = GlobalKey();
   GlobalKey<FormState> addBakeryProductKey = GlobalKey();
   GlobalKey<FormState> addFishProductKey = GlobalKey();
   GlobalKey<FormState> addSweetProductKey = GlobalKey();
   GlobalKey<FormState> addCoffeeProductKey = GlobalKey();
-
-
-
 
   addNewBeverageProduct(String catId) async {
     if (imageFile != null) {
@@ -505,6 +561,7 @@ class AdminProvider extends ChangeNotifier {
           .showCustomDialog('Error', 'You have to pick image first');
     }
   }
+
   addNewCoffeeProduct(String catId) async {
     if (imageFile != null) {
       if (addCoffeeProductKey.currentState!.validate()) {
@@ -543,6 +600,7 @@ class AdminProvider extends ChangeNotifier {
           .showCustomDialog('Error', 'You have to pick image first');
     }
   }
+
   addNewSweetProduct(String catId) async {
     if (imageFile != null) {
       if (addSweetProductKey.currentState!.validate()) {
@@ -669,4 +727,18 @@ class AdminProvider extends ChangeNotifier {
     allSweetProducts = products;
     notifyListeners();
   }
+
+
+
+  // deleteProduct(String? productId) async {
+  //   log('Arrived');
+  //   AppRouter.appRouter.showLoadingDialoug();
+  //   bool deleteSuccess =
+  //       await FirestoreHelper.firestoreHelper.deleteBeverageProduct(productId);
+  //   if (deleteSuccess) {
+  //     allBeverageProducts!.remove(productId);
+  //     notifyListeners();
+  //   }
+  //   AppRouter.appRouter.hideDialoug();
+  // }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_app2/Routers/app_router.dart';
-import 'package:social_app2/screens/widgets/beverage_category_widget.dart';
 import '../../../../components/custom_app_bar.dart';
 import '../../../../providers/admin_provider.dart';
+import '../../../widgets/Category/beverage_category_widget.dart';
 import '../add/add_new_beverage.dart';
 
 class AllBeveragesScreen extends StatelessWidget {

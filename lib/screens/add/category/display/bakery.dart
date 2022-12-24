@@ -4,7 +4,7 @@ import 'package:social_app2/Routers/app_router.dart';
 import '../../../../components/custom_app_bar.dart';
 import '../../../../providers/admin_provider.dart';
 import '../add/add_new_bakeries.dart';
-import '../../../widgets/bakery_category.dart';
+import '../../../widgets/Category/bakery_category.dart';
 
 class AllBakeriesCategoryScreen extends StatelessWidget {
   const AllBakeriesCategoryScreen({Key? key}) : super(key: key);

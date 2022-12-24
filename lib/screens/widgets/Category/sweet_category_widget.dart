@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:social_app2/providers/admin_provider.dart';
 
-import '../../models/product.dart';
+import '../../../Routers/app_router.dart';
+import '../../../models/categoryy.dart';
+import '../../../providers/admin_provider.dart';
+import '../../add/products/display/display_all_sweet_products.dart';
 
-class ProductWidget extends StatelessWidget {
-  Product product;
+class SweetCategoryWidget extends StatelessWidget {
+  Category category;
 
-  ProductWidget(this.product);
+  SweetCategoryWidget(this.category);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class ProductWidget extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
+        margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15),
@@ -25,16 +27,16 @@ class ProductWidget extends StatelessWidget {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(13)),
-                  child: SizedBox(
+                    borderRadius:
+                        const BorderRadius.vertical(top: Radius.circular(13)),
+                    child: SizedBox(
                       width: double.infinity,
                       height: 170,
                       child: Image.network(
-                        product.imageUrl,
+                        category.imageUrl,
                         fit: BoxFit.cover,
-                      )),
-                ),
+                      ),
+                    )),
                 Positioned(
                     right: 15,
                     top: 10,
@@ -45,9 +47,8 @@ class ProductWidget extends StatelessWidget {
                           backgroundColor: Colors.white,
                           child: IconButton(
                               onPressed: () {
-                                // provider.deleteProduct(product.id);
-                              },
-                              icon: const Icon(Icons.delete)),
+                                provider.deleteSweetCategory(category);
+                              }, icon: const Icon(Icons.delete)),
                         ),
                         const SizedBox(
                           height: 10,
@@ -63,18 +64,23 @@ class ProductWidget extends StatelessWidget {
               ],
             ),
             Container(
-              margin: EdgeInsets.all(10),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+              margin: const EdgeInsets.all(10),
+              child: Row(
+                  // crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      'Product Name' + ': ' + product.name,
+                      'Category Name' + ': ' + category.name,
                     ),
-                    Text(
-                      'Product Price' + ': ' + product.price,
-                    ),
+                    const SizedBox(width: 140,),
+
+                    InkWell(
+                        onTap: () {
+                          AppRouter.appRouter
+                              .goToWidget(AllSweetProductsScreen(category.id));
+                        },
+                        child: const Icon(Icons.arrow_drop_down)),
                   ]),
-            ),
+            )
           ],
         ),
       ),

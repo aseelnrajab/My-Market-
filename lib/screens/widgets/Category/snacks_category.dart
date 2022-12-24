@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_app2/providers/admin_provider.dart';
+import 'package:social_app2/screens/add/category/edit%20/edit_snack_category.dart';
 import 'package:social_app2/screens/add/products/display/display_all_snacks_products.dart';
 
 import '../../../Routers/app_router.dart';
@@ -58,7 +59,7 @@ class SnacksCategoryWidget extends StatelessWidget {
                           backgroundColor: Colors.white,
                           child: IconButton(
                               onPressed: () {
-                                // provider.(category);
+                                AppRouter.appRouter.goToWidget(EditSnackCategory(category));
                               }, icon: const Icon(Icons.edit)),
                         ),
                       ],

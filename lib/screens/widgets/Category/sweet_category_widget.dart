@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:social_app2/screens/add/category/edit%20/edit_sweet_category.dart';
 
 import '../../../Routers/app_router.dart';
 import '../../../models/categoryy.dart';
@@ -48,7 +49,8 @@ class SweetCategoryWidget extends StatelessWidget {
                           child: IconButton(
                               onPressed: () {
                                 provider.deleteSweetCategory(category);
-                              }, icon: const Icon(Icons.delete)),
+                              },
+                              icon: const Icon(Icons.delete)),
                         ),
                         const SizedBox(
                           height: 10,
@@ -57,7 +59,11 @@ class SweetCategoryWidget extends StatelessWidget {
                           radius: 20,
                           backgroundColor: Colors.white,
                           child: IconButton(
-                              onPressed: () {}, icon: const Icon(Icons.edit)),
+                              onPressed: () {
+                                AppRouter.appRouter
+                                    .goToWidget(EditSweetCategory(category));
+                              },
+                              icon: const Icon(Icons.edit)),
                         ),
                       ],
                     ))
@@ -71,8 +77,9 @@ class SweetCategoryWidget extends StatelessWidget {
                     Text(
                       'Category Name' + ': ' + category.name,
                     ),
-                    const SizedBox(width: 140,),
-
+                    const SizedBox(
+                      width: 140,
+                    ),
                     InkWell(
                         onTap: () {
                           AppRouter.appRouter

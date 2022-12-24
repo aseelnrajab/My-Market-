@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:social_app2/screens/add/category/edit%20/edit_beverage_category.dart';
 
 import '../../../Routers/app_router.dart';
 import '../../../models/categoryy.dart';
@@ -57,7 +58,10 @@ class BakeryCategoryWidget extends StatelessWidget {
                             radius: 20,
                             backgroundColor: Colors.white,
                             child: IconButton(
-                                onPressed: () {}, icon: const Icon(Icons.edit)),
+                                onPressed: () {
+                                  AppRouter.appRouter.goToWidget(EditBeverageCategory(category));
+
+                                }, icon: const Icon(Icons.edit)),
                           ),
                         ],
                       ))

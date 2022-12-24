@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:social_app2/providers/admin_provider.dart';
 import 'package:social_app2/providers/auth_provider.dart';
 import 'package:social_app2/providers/bottom_navigation_bar_provider.dart';
-import 'package:social_app2/screens/login_screen.dart';
-import 'package:social_app2/screens/main_screen.dart';
 import 'package:social_app2/screens/register_screen.dart';
 
 import 'Routers/app_router.dart';

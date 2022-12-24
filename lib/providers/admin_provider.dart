@@ -7,6 +7,7 @@ import '../Routers/app_router.dart';
 import '../firebase_helper.dart';
 import '../models/categoryy.dart';
 import '../models/product.dart';
+import '../screens/sliders/slider.dart';
 import '../storage_helper.dart';
 
 class AdminProvider extends ChangeNotifier {
@@ -15,6 +16,7 @@ class AdminProvider extends ChangeNotifier {
   AdminProvider() {
     getAllCategories();
     getAllProducts();
+    getAllSliders();
     // getAllSliders();
   }
 
@@ -51,7 +53,6 @@ class AdminProvider extends ChangeNotifier {
     allSweets = await FirestoreHelper.firestoreHelper.getAllSweets();
     allOffers = await FirestoreHelper.firestoreHelper.getAllOffer();
     CartProducts = await FirestoreHelper.firestoreHelper.getCartProducts();
-
     notifyListeners();
   }
 
@@ -65,6 +66,8 @@ class AdminProvider extends ChangeNotifier {
     }
   }
 
+
+//Add Category
   addNewBeverage() async {
     if (imageFile != null) {
       if (beverageCategoryFormKey.currentState!.validate()) {
@@ -406,6 +409,8 @@ class AdminProvider extends ChangeNotifier {
   GlobalKey<FormState> addSweetProductKey = GlobalKey();
   GlobalKey<FormState> addCoffeeProductKey = GlobalKey();
 
+  //Add Product
+
   addNewBeverageProduct(String catId) async {
     if (imageFile != null) {
       if (addBeverageProductKey.currentState!.validate()) {
@@ -649,6 +654,7 @@ class AdminProvider extends ChangeNotifier {
   List<Product>? CartProducts;
   List<Product>? payment;
 
+  //get Products
   getAllProducts() async {
     getAllBeverageProducts();
     getAllSnacksProducts();
@@ -789,7 +795,6 @@ class AdminProvider extends ChangeNotifier {
 //   totalPrice += payment![i].price as int;
 // }
 // return totalPrice;
-}
 
 // deleteProduct(String? productId) async {
 //   log('Arrived');
@@ -802,3 +807,208 @@ class AdminProvider extends ChangeNotifier {
 //   }
 //   AppRouter.appRouter.hideDialoug();
 // }
+
+  //update categories
+
+  updateBeverageCategory(Category category) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    if (imageFile != null) {
+      String imageUrl = await StorageHelper.storageHelper
+          .uploadNewImage("beverage_images", imageFile!);
+      category.imageUrl = imageUrl;
+    }
+    Category newCategory = Category(
+      id: category.id,
+      imageUrl: category.imageUrl,
+      name: categoryNameController.text.isEmpty
+          ? category.name
+          : categoryNameController.text,
+    );
+    bool? isUpdated =
+        await FirestoreHelper.firestoreHelper.updateBeverage(newCategory);
+
+    if (isUpdated != null && isUpdated) {
+      int index = allBeverage!.indexOf(category);
+      allBeverage![index] = newCategory;
+      imageFile = null;
+      categoryNameController.clear();
+      notifyListeners();
+      AppRouter.appRouter.hideDialoug();
+    }
+  }
+
+  updateSnackCategory(Category category) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    if (imageFile != null) {
+      String imageUrl = await StorageHelper.storageHelper
+          .uploadNewImage("snack_images", imageFile!);
+      category.imageUrl = imageUrl;
+    }
+    Category newCategory = Category(
+      id: category.id,
+      imageUrl: category.imageUrl,
+      name: categoryNameController.text.isEmpty
+          ? category.name
+          : categoryNameController.text,
+    );
+    bool? isUpdated =
+        await FirestoreHelper.firestoreHelper.updateBabyCare(newCategory);
+
+    if (isUpdated != null && isUpdated) {
+      int index = allsnack!.indexOf(category);
+      allsnack![index] = newCategory;
+      imageFile = null;
+      categoryNameController.clear();
+      notifyListeners();
+      AppRouter.appRouter.hideDialoug();
+    }
+  }
+
+  updateCofeeCategory(Category category) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    if (imageFile != null) {
+      String imageUrl = await StorageHelper.storageHelper
+          .uploadNewImage("coffee_category", imageFile!);
+      category.imageUrl = imageUrl;
+    }
+    Category newCategory = Category(
+      id: category.id,
+      imageUrl: category.imageUrl,
+      name: categoryNameController.text.isEmpty
+          ? category.name
+          : categoryNameController.text,
+    );
+    bool? isUpdated =
+        await FirestoreHelper.firestoreHelper.updateCoffee(newCategory);
+
+    if (isUpdated != null && isUpdated) {
+      int index = allCoffee!.indexOf(category);
+      allCoffee![index] = newCategory;
+      imageFile = null;
+      categoryNameController.clear();
+      notifyListeners();
+      AppRouter.appRouter.hideDialoug();
+    }
+  }
+
+  updateFishCategory(Category category) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    if (imageFile != null) {
+      String imageUrl = await StorageHelper.storageHelper
+          .uploadNewImage("fishes_images", imageFile!);
+      category.imageUrl = imageUrl;
+    }
+    Category newCategory = Category(
+      id: category.id,
+      imageUrl: category.imageUrl,
+      name: categoryNameController.text.isEmpty
+          ? category.name
+          : categoryNameController.text,
+    );
+    bool? isUpdated =
+        await FirestoreHelper.firestoreHelper.updateFishes(newCategory);
+
+    if (isUpdated != null && isUpdated) {
+      int index = allFishes!.indexOf(category);
+      allFishes![index] = newCategory;
+      imageFile = null;
+      categoryNameController.clear();
+      notifyListeners();
+      AppRouter.appRouter.hideDialoug();
+    }
+  }
+
+  updateSweetCategory(Category category) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    if (imageFile != null) {
+      String imageUrl = await StorageHelper.storageHelper
+          .uploadNewImage("sweet_category", imageFile!);
+      category.imageUrl = imageUrl;
+    }
+    Category newCategory = Category(
+      id: category.id,
+      imageUrl: category.imageUrl,
+      name: categoryNameController.text.isEmpty
+          ? category.name
+          : categoryNameController.text,
+    );
+    bool? isUpdated =
+        await FirestoreHelper.firestoreHelper.updateSweet(newCategory);
+
+    if (isUpdated != null && isUpdated) {
+      int index = allSweets!.indexOf(category);
+      allSweets![index] = newCategory;
+      imageFile = null;
+      categoryNameController.clear();
+      notifyListeners();
+      AppRouter.appRouter.hideDialoug();
+    }
+  }
+
+  updateBakeryCategory(Category category) async {
+    AppRouter.appRouter.showLoadingDialoug();
+    if (imageFile != null) {
+      String imageUrl = await StorageHelper.storageHelper
+          .uploadNewImage("bakery_images", imageFile!);
+      category.imageUrl = imageUrl;
+    }
+    Category newCategory = Category(
+      id: category.id,
+      imageUrl: category.imageUrl,
+      name: categoryNameController.text.isEmpty
+          ? category.name
+          : categoryNameController.text,
+    );
+    bool? isUpdated =
+        await FirestoreHelper.firestoreHelper.updateBakeries(newCategory);
+
+    if (isUpdated != null && isUpdated) {
+      int index = allBakeries!.indexOf(category);
+      allBakeries![index] = newCategory;
+      imageFile = null;
+      categoryNameController.clear();
+      notifyListeners();
+      AppRouter.appRouter.hideDialoug();
+    }
+  }
+
+  List<Slider>? allSliders;
+  TextEditingController sliderTitleController = TextEditingController();
+  TextEditingController sliderUrlController = TextEditingController();
+
+  getAllSliders() async {
+    allSliders = await FirestoreHelper.firestoreHelper.getAllSliders();
+  }
+
+  AddNewSlider() async {
+    if (imageFile != null) {
+      AppRouter.appRouter.showLoadingDialoug();
+      String imageUrl = await StorageHelper.storageHelper
+          .uploadNewImage("Slider_images", imageFile!);
+      Slider slider = Slider(
+          imageUrl: imageUrl,
+          title: sliderTitleController.text,
+          url: sliderUrlController.text);
+
+      String? id = await FirestoreHelper.firestoreHelper.addNewSlider(slider);
+
+      AppRouter.appRouter.hideDialoug();
+      if (id != null) {
+        slider.id = id;
+        allSliders?.add(slider);
+        notifyListeners();
+        sliderTitleController.clear();
+        sliderUrlController.clear();
+
+        imageFile = null;
+        notifyListeners();
+        AppRouter.appRouter
+            .showCustomDialog('Success', 'Your Slider has been added');
+      }
+    } else {
+      AppRouter.appRouter
+          .showCustomDialog('Error', 'You have to pick image first');
+    }
+  }
+
+}

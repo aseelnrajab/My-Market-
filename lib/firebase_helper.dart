@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:social_app2/models/offers/offers_menu.dart';
+import 'package:social_app2/screens/sliders/slider.dart';
 
 import 'models/categoryy.dart';
 import 'models/app_user.dart';
@@ -510,7 +511,7 @@ class FirestoreHelper {
       log(e.toString());
       return false;
     }
-  }}
+  }
 
   //
   // addToPayment(Product product) async {
@@ -566,5 +567,28 @@ class FirestoreHelper {
 //     log(e.toString());
 //   }
 // }
+
+  Future<String?> addNewSlider(Slider slider) async {
+    try {
+      DocumentReference<Map<String, dynamic>> documentReference =
+      await firestore.collection('sliders').add(slider.toMap());
+      return documentReference.id;
+    } on Exception catch (e) {
+      return null;
+    }
+  }
+
+  Future<List<Slider>?> getAllSliders() async {
+    QuerySnapshot<Map<String, dynamic>> querySnapshot =
+    await firestore.collection('sliders').get();
+    return querySnapshot.docs.map((e) {
+      Slider slider = Slider.fromMap(e.data());
+      slider.id = e.id;
+      return slider;
+    }).toList();
+  }
+
+
+  }
 
 

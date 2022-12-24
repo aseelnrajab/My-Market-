@@ -5,6 +5,7 @@ import '../../../Routers/app_router.dart';
 import '../../../models/categoryy.dart';
 import '../../../providers/admin_provider.dart';
 import '../../add/products/display/display_all_beverage_products.dart';
+import '../../add/category/edit /edit_beverage_category.dart';
 
 class BeverageCategoryWidget extends StatelessWidget {
   Category category;
@@ -48,7 +49,8 @@ class BeverageCategoryWidget extends StatelessWidget {
                           child: IconButton(
                               onPressed: () {
                                 provider.deleteBeverageCategory(category);
-                              }, icon: const Icon(Icons.delete)),
+                              },
+                              icon: const Icon(Icons.delete)),
                         ),
                         const SizedBox(
                           height: 10,
@@ -57,9 +59,13 @@ class BeverageCategoryWidget extends StatelessWidget {
                           radius: 20,
                           backgroundColor: Colors.white,
                           child: IconButton(
-                              onPressed: () {}, icon: const Icon(Icons.edit)),
+                              onPressed: () {
+                                AppRouter.appRouter
+                                    .goToWidget(EditBeverageCategory(category));
+                              },
+                              icon: const Icon(Icons.edit)),
                         ),
-                       ],
+                      ],
                     ))
               ],
             ),
@@ -71,19 +77,23 @@ class BeverageCategoryWidget extends StatelessWidget {
                       Text(
                         'Category Name' + ': ' + category.name,
                       ),
-                     const SizedBox(width: 140,),
+                      const SizedBox(
+                        width: 140,
+                      ),
                       InkWell(
                           onTap: () {
                             AppRouter.appRouter.goToWidget(
                                 AllBeverageProductsScreen(category.id));
                           },
-                          child: const Icon(Icons.arrow_drop_down , color: Colors.black,size: 40,)),
-
+                          child: const Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black,
+                            size: 40,
+                          )),
                     ])),
           ],
         ),
       ),
     );
-
   }
 }

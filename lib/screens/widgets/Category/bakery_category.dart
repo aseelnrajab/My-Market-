@@ -17,7 +17,7 @@ class BakeryCategoryWidget extends StatelessWidget {
     return InkWell(
         onTap: () {},
         child: Container(
-            margin: const EdgeInsets.all(10),
+            margin: const EdgeInsets.all(15),
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(15),

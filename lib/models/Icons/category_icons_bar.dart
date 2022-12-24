@@ -14,7 +14,7 @@ class CategoryIconBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:const  EdgeInsets.all(15),
+      margin:const  EdgeInsets.all(22),
       child: ListTile(
         title: Text(
           iconBar.name ?? '',

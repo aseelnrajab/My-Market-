@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../Routers/app_router.dart';
-import '../../components/custom_app_bar.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/bottom_navigation_bar_provider.dart';
 import 'edit_profile.dart';
@@ -18,23 +16,14 @@ class Profile extends StatelessWidget {
     var provider1 = Provider.of<AuthProvider>(context);
     return Scaffold(
         appBar: AppBar(
-            title: const Text('Profile'),
-            leading: InkWell(
-                onTap: () {
-                  provider1.signOut();
-                  AppRouter.appRouter.goToWidget(SignInScreen());
-                },
-                child: const Icon(Icons.logout)),
-            backgroundColor: Colors.green,
-            // actions: [
-            //   IconButton(
-            //       onPressed: () {
-            //         provider.scaffoldKey.currentState?.openDrawer();
-            //       },
-            //       icon: const Icon(
-            //         Icons.menu,
-            //       ))
-            // ]
+          title: const Text('Profile'),
+          leading: InkWell(
+              onTap: () {
+                provider1.signOut();
+                AppRouter.appRouter.goToWidget(SignInScreen());
+              },
+              child: const Icon(Icons.logout)),
+          backgroundColor: Colors.green,
         ),
         body: Container(
             padding: const EdgeInsets.only(left: 40, right: 40, bottom: 50),
@@ -49,7 +38,6 @@ class Profile extends StatelessWidget {
                       height: 130,
                       decoration: BoxDecoration(
                         border: Border.all(width: 4, color: Colors.white),
-
                         shape: BoxShape.circle,
                         image: const DecorationImage(
                             fit: BoxFit.cover,
@@ -60,7 +48,7 @@ class Profile extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 100.0, top: 100),
                     child: InkWell(
                       onTap: () {
-                        AppRouter.appRouter.goToWidget(EditProfile());
+                        AppRouter.appRouter.goToWidget(const EditProfile());
                       },
                       child: const Icon(
                         Icons.edit,

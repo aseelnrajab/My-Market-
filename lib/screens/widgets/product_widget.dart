@@ -64,15 +64,34 @@ class ProductWidget extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.all(10),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+              child: Row(
+                  // crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      'Product Name' + ': ' + product.name,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Product Name' + ': ' + product.name,
+                        ),
+                        Text(
+                          'Product Price' + ': ' + product.price,
+                        ),
+                      ],
                     ),
-                    Text(
-                      'Product Price' + ': ' + product.price,
+                    const SizedBox(
+                      width: 90,
                     ),
+                    Column(children: [
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 10.0),
+                              backgroundColor: Colors.green,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30))),
+                          onPressed: () {},
+                          child: const Text('Add to Cart')),
+                    ])
                   ]),
             ),
           ],

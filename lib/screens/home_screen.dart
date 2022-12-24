@@ -16,9 +16,10 @@ import 'add/category/display/beverage_categories.dart';
 import 'add/category/display/coffee.dart';
 import 'add/category/display/fishes.dart';
 import 'add/category/display/sweet.dart';
+import 'cart.dart';
 
 class HomeScreen extends StatelessWidget {
-  List path =const [
+  List path = const [
     AllBeveragesScreen(),
     AllSnackCategoriesScreen(),
     AllBakeriesCategoryScreen(),
@@ -44,7 +45,7 @@ class HomeScreen extends StatelessWidget {
             actions: [
               IconButton(
                   onPressed: () {
-                    // provider.scaffoldKey.currentState?.openDrawer();
+                    AppRouter.appRouter.goToWidget(const Cart());
                   },
                   icon: const Icon(
                     Icons.shopping_cart,

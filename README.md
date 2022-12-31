@@ -1,16 +1,9 @@
-# social_app2
+# My Market App
 
-A new Flutter project.
+My Market is a mobile application which review many types of foodstuffs through it, with the possibility of adding/ editing/ deleting many categories per type.  In addition, we can add too many products to a specific category item, with the ability to add/delete them to the cart.
 
-## Getting Started
+ This app was built by Flutter technology, Firebase.
 
-This project is a starting point for a Flutter application.
+1- Register, sign up by Firebase Authentications.
+2- Upload and store images by Firebase Storage.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
